@@ -1,0 +1,21 @@
+# Credentials
+.env
+*.env
+
+# Power BI binaries (trop lourds pour git — on versionne le .pbip seulement)
+archive/pbix/*.pbix
+dashboard/**/*.pbix
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Fichiers temporaires
+*.tmp
+*.bak
+~$*
+
+# Dossiers système
+.DS_Store
+Thumbs.db
