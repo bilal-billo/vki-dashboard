@@ -1,0 +1,41 @@
+table msdyn_organizationalunit
+	lineageTag: 28acd5e7-20a7-42a7-bafd-a589ee79b5b4
+
+	column 'Organizational Unit'
+		dataType: string
+		lineageTag: 82c30662-7770-419d-955b-09361979d1d5
+		summarizeBy: none
+		sourceColumn: msdyn_organizationalunitid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		isHidden
+		lineageTag: 69634072-3a25-4ae2-87b2-8a6eec4f2575
+		summarizeBy: none
+		sourceColumn: msdyn_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition msdyn_organizationalunit = m
+		mode: import
+		source =
+				let
+				      Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				      dbo_msdyn_organizationalunit = Source{[Schema="dbo",Item="msdyn_organizationalunit"]}[Data],
+				      #"Kept Columns" = Table.SelectColumns(dbo_msdyn_organizationalunit, {
+				          "msdyn_organizationalunitid",
+				          "msdyn_name"
+				      }),
+				      #"Changed Types" = Table.TransformColumnTypes(#"Kept Columns", {
+				          {"msdyn_organizationalunitid", type text},
+				          {"msdyn_name", type text}
+				      })
+				  in
+				      #"Changed Types"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

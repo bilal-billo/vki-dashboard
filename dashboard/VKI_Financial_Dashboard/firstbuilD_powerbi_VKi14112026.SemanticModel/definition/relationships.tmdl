@@ -1,0 +1,185 @@
+relationship 66b24731-9bbc-49c0-b84f-4810545aa251
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Projects.'Start date'
+	toColumn: LocalDateTable_2f0d0033-af9e-4d94-b050-e973d9d74fad.Date
+
+relationship aa21e69e-cc81-4a66-89a2-6a2665a9913b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Projects.'Finish Date'
+	toColumn: LocalDateTable_ec0f1471-b450-42b0-800f-fed7ac831eb6.Date
+
+relationship 18eb74e9-ee65-4e51-a163-d87d6870950b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Milestones.Date
+	toColumn: LocalDateTable_605ed5d5-ebad-4bb6-b4c9-26ebc3a63c0f.Date
+
+relationship bd148d7d-8aa8-4510-8727-2bf728cc2dc0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Invoices.'Date Delivered'
+	toColumn: LocalDateTable_6930ac58-b7f4-4e6f-ae30-a51496425221.Date
+
+relationship 9929a038-15da-442d-b37b-b6399a5ae89b
+	fromColumn: Contracts.customerid
+	toColumn: Customers.Account
+
+	annotation PBI_IsFromSource = FS
+
+relationship d398ab4c-b759-4490-9a6d-5a4eb2340485
+	fromColumn: Contracts.craef_vkiprojecttype
+	toColumn: ProjectTypes.'VKI Project Types'
+
+	annotation PBI_IsFromSource = FS
+
+relationship 031756a2-d83f-4084-ae60-da0de9a756b9
+	fromColumn: Milestones.msdyn_project
+	toColumn: Projects.Project
+
+	annotation PBI_IsFromSource = FS
+
+relationship f4d57a64-7eb3-4206-8914-230fef9d0e4b
+	fromColumn: Milestones.msdyn_contract
+	toColumn: Contracts.Order
+
+	annotation PBI_IsFromSource = FS
+
+relationship 53cdc5e4-0306-4b13-95f3-6e081abbfbea
+	fromColumn: Invoices.customerid
+	toColumn: Customers.Account
+
+	annotation PBI_IsFromSource = FS
+
+relationship 11ae660c-4af7-9d90-cd11-584342e5fbd2
+	fromColumn: Projects.'Project manager'
+	toColumn: Employees.Name
+
+relationship 61472d5c-660c-4d20-bf66-96d18b2b8b01
+	joinOnDateBehavior: datePartOnly
+	fromColumn: OdooData.PeriodDate
+	toColumn: LocalDateTable_754336e0-0a16-4896-a419-da956f87aa02.Date
+
+relationship f40e33b2-3507-460c-a0ed-2e429a4372d4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dates.Date
+	toColumn: LocalDateTable_6921c4bb-a6d9-4ed3-8f34-2eee12acaa88.Date
+
+relationship 2dd7f42f-8300-d28d-e362-4aaadf484339
+	fromColumn: Milestones.'Milestone date'
+	toColumn: Dates.Date
+
+relationship 019670c5-8164-23c2-b240-9f1b4cfe6f68
+	fromColumn: Projects.msdyn_contractorganizationalunitid
+	toColumn: msdyn_organizationalunit.'Organizational Unit'
+
+relationship a0c15d78-567b-08a9-bcfd-8a774374a822
+	toCardinality: many
+	fromColumn: OdooData.StatNumber
+	toColumn: Projects.'VKI Stat Number'
+
+relationship a070e0ac-0e93-feb8-4337-a3780008620c
+	fromColumn: OdooData.Date
+	toColumn: Dates.Date
+
+relationship 1229e4d8-e299-4ca2-ab74-bb9c77b678cd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GL_HEADER.DocumentDate
+	toColumn: LocalDateTable_506bbe0a-c670-4a2c-a606-110917d9ea47.Date
+
+relationship 9f6ec5cb-ba90-4027-a8fc-5ee9900b078c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GL_HEADER.AcknowledgementDate
+	toColumn: LocalDateTable_2242bcaa-e250-4abc-ab78-31524eb8b011.Date
+
+relationship 084035db-9122-427d-a1e7-848ff8e8c893
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GL_HEADER.CreatedOn
+	toColumn: LocalDateTable_b34cda15-cc88-4192-af7f-56e27f078f25.Date
+
+relationship BOB_OUT_to_GL_Dates
+	fromColumn: BOB_OUT.GeneralJournalEntry
+	toColumn: GL_HEADER.SourceKey
+
+relationship a90b09a4-79e3-4afe-8a89-89012c564784
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Created On'
+	toColumn: LocalDateTable_a917d08e-ad94-420f-b1a0-c488e7f1f540.Date
+
+relationship 27108291-871f-4eb6-868f-fad04d5a7ee5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Modified On'
+	toColumn: LocalDateTable_334313c2-ed86-48df-9c17-2e3dd20d28a4.Date
+
+relationship b127f7d0-8f44-42d8-84e6-209d94b8510e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Record Created On'
+	toColumn: LocalDateTable_5a46c127-16fa-4825-b9b4-4ac9b1a0766b.Date
+
+relationship ce587225-2dca-4c74-b39e-f9cd9c825a2d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Accounting Date'
+	toColumn: LocalDateTable_8d30180f-55ae-41f0-95b8-ceada2c2ec90.Date
+
+relationship 112284cc-dbdb-40c2-8c98-f36a683343e3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Document Date'
+	toColumn: LocalDateTable_10a9eadc-2a18-4eff-bf6a-82a74ef6e3a3.Date
+
+relationship 88c23e7b-fe7a-4e10-aef6-4522b7bf7ed1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'End Date/Time'
+	toColumn: LocalDateTable_b088ead8-00ee-4a8c-8846-7ca801fae815.Date
+
+relationship 077ed9d2-ed2f-42dd-89d6-fd72fc215a31
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Exchange Rate Date'
+	toColumn: LocalDateTable_127d52d3-774b-49a2-91e0-37122e396030.Date
+
+relationship 69d197de-830f-4b03-a46f-8ff99f452c75
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'External Reference Date'
+	toColumn: LocalDateTable_8274ee99-3b12-4090-9514-26db90a27711.Date
+
+relationship f166bb1b-e4b3-4a30-87c0-7eee324e2822
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Start Date/Time'
+	toColumn: LocalDateTable_159c1d91-3278-49b6-bf1f-6e66241fefbf.Date
+
+relationship 87f939a2-a786-46c8-b53a-8da10b510ea5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Accounting date [TZ independent]'
+	toColumn: LocalDateTable_028a9558-0cd7-4206-9137-29ab7c32f47b.Date
+
+relationship 39b11032-3371-4e94-b9c5-d240dc1ab4e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Transaction Date (Time Zone Independent)'
+	toColumn: LocalDateTable_26d5f558-7a3e-4b1e-bb99-59674578ed32.Date
+
+relationship f194c74f-4079-4fb6-a244-a893b7a2e289
+	joinOnDateBehavior: datePartOnly
+	fromColumn: msdyn_actual.'Last Adjustment Date'
+	toColumn: LocalDateTable_1a86fd77-c8e4-4c77-88ae-67b0f66bfa87.Date
+
+relationship GL_Dates_to_Dates
+	fromColumn: GL_HEADER.AccountingDate_Date
+	toColumn: Dates.Date
+
+relationship BOB_OUT_to_Projects
+	fromColumn: BOB_OUT.FOProjectId
+	toColumn: Projects.'Project ID'
+
+relationship msdyn_actual_to_Projects
+	fromColumn: msdyn_actual.msdyn_project
+	toColumn: Projects.Project
+
+relationship 0c9e76c6-816d-4689-83bd-5659334558da
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GL_HEADER.AccountingDate
+	toColumn: LocalDateTable_4f17d3f0-1965-4680-98b3-c36f196ca6d6.Date
+
+relationship Relationship
+	fromColumn: msdyn_actual.'Transaction category'
+	toColumn: GL_MainAccounts.MainAccountId
+
+relationship 'Relationship 1'
+	fromColumn: msdyn_actual.'Accounting Date'
+	toColumn: Dates.Date
+

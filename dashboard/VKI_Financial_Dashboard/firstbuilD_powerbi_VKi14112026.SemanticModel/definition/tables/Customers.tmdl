@@ -1,0 +1,57 @@
+table Customers
+	lineageTag: 399d1604-f1e3-4aba-a367-f2aef54d2d68
+
+	column Account
+		dataType: string
+		lineageTag: 20e2e9df-8aac-4336-b4f2-57c94d796651
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: e3fcb0a9-df4e-4b8a-9492-cf4b6290cdff
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Number'
+		dataType: string
+		lineageTag: 28fc5ecb-5418-4e01-a260-182c587c6af2
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address 1: Country/Region'
+		dataType: string
+		lineageTag: 87109fe0-b97b-4ca9-bca1-7c097132f462
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				      Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				      Nav = Source{[Schema="dbo",Item="account"]}[Data],
+				      Cols = Table.SelectColumns(Nav, {
+				          "accountid","name","accountnumber","address1_country"
+				      }),
+				      Renamed = Table.RenameColumns(Cols, {
+				          {"accountid","CustomerID"},
+				          {"name","CustomerName"},
+				          {"accountnumber","CustomerNumber"},
+				          {"address1_country","Country"}
+				      })
+				  in
+				      Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

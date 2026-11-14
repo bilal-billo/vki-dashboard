@@ -1,0 +1,88 @@
+table Invoices
+	lineageTag: c8331d77-eeb5-4201-9f62-7c72b042225f
+
+	column Invoice
+		dataType: string
+		lineageTag: b064ae67-76c2-4ad2-9674-d4088a8a6619
+		summarizeBy: none
+		sourceColumn: InvoiceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice ID'
+		dataType: string
+		lineageTag: e00327e4-2427-411c-a2c2-a3d954e0a4de
+		summarizeBy: none
+		sourceColumn: InvoiceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 0751a388-0ed9-4a8a-ae3b-732606b4b105
+		summarizeBy: none
+		sourceColumn: InvoiceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Amount'
+		dataType: double
+		lineageTag: 3ddfa646-7a1a-42dc-92b8-8db55f113043
+		summarizeBy: sum
+		sourceColumn: InvoiceAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Date Delivered'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bd75f525-ec55-4245-8937-38b5628edc30
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+		variation Variation
+			isDefault
+			relationship: bd148d7d-8aa8-4510-8727-2bf728cc2dc0
+			defaultHierarchy: LocalDateTable_6930ac58-b7f4-4e6f-ae30-a51496425221.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerid
+		dataType: string
+		lineageTag: 0ab3a5bc-f4a7-4843-aa90-640c58d3100b
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Invoices = m
+		mode: import
+		source =
+				let
+				      Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				      Nav = Source{[Schema="dbo",Item="invoice"]}[Data],
+				      Cols = Table.SelectColumns(Nav, {
+				          "invoiceid","invoicenumber","name",
+				          "totalamount","datedelivered","customerid"
+				      }),
+				      Renamed = Table.RenameColumns(Cols, {
+				          {"invoiceid","InvoiceID"},
+				          {"invoicenumber","InvoiceNumber"},
+				          {"name","InvoiceName"},
+				          {"totalamount","InvoiceAmount"},
+				          {"datedelivered","InvoiceDate"},
+				          {"customerid","CustomerID"}
+				      }),
+				      Types = Table.TransformColumnTypes(Renamed, {
+				          {"InvoiceAmount", type number},
+				          {"InvoiceDate", type datetime}
+				      })
+				  in
+				      Types
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

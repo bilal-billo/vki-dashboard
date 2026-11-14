@@ -1,0 +1,92 @@
+table BOB_OUT
+	lineageTag: fe95fccc-156b-48ac-86c6-f79d89ed05c2
+
+	column PostingType
+		dataType: string
+		lineageTag: 7e85f80e-bf7e-4c08-a429-dd724926b4f5
+		summarizeBy: none
+		sourceColumn: PostingType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountingCurrencyAmount
+		dataType: double
+		lineageTag: 3cc7be5e-67c5-46a7-8ac7-ff787478a9d5
+		summarizeBy: sum
+		sourceColumn: AccountingCurrencyAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GeneralJournalEntry
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d174526-7e65-488c-879a-54fdd44de121
+		summarizeBy: sum
+		sourceColumn: GeneralJournalEntry
+
+		annotation SummarizationSetBy = Automatic
+
+	column Text
+		dataType: string
+		lineageTag: 957deb88-bb33-4b23-9852-239c8411163d
+		summarizeBy: none
+		sourceColumn: Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column LedgerDimensionValuesJson
+		dataType: string
+		lineageTag: 9949ff88-c165-4ec3-8ffb-af21020fc982
+		summarizeBy: none
+		sourceColumn: LedgerDimensionValuesJson
+
+		annotation SummarizationSetBy = Automatic
+
+	column FOProjectId = ```
+			
+			VAR _json = BOB_OUT[LedgerDimensionValuesJson]
+			VAR _key = """PROJECT"":"""
+			VAR _pos = FIND(_key, _json, 1, 0)
+			RETURN IF(
+			    _pos = 0 || ISBLANK(_json),
+			    BLANK(),
+			    VAR _start = _pos + LEN(_key)
+			    RETURN MID(_json, _start, FIND("""", _json, _start) - _start)
+			)
+			
+			```
+		lineageTag: 7a03b59a-67f6-4851-bc90-ceebf36218bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MainAccount
+		dataType: string
+		lineageTag: 848fba14-08ea-40b2-9576-03a28e1ac5c9
+		summarizeBy: none
+		sourceColumn: MainAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GL Account Prefix' = LEFT([MainAccount], 2)
+		dataType: string
+		lineageTag: e8597665-68eb-4187-80e6-cc739f8319be
+
+	partition BOB_OUT = m
+		mode: import
+		source =
+				let
+				    Source = OData.Feed(
+				        "https://vki-prod.operations.eu.dynamics.com/data/GeneralJournalAccountEntryBiEntities?$select=GeneralJournalEntry,AccountingCurrencyAmount,LedgerDimensionValuesJson,Text,PostingType",
+				        null, [Implementation="2.0"]
+				    ),
+				    AddedMainAccount = Table.AddColumn(Source, "MainAccount", each try Json.Document([LedgerDimensionValuesJson]){0}[MAINACCOUNT] otherwise null, type text)
+				in
+				    AddedMainAccount
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

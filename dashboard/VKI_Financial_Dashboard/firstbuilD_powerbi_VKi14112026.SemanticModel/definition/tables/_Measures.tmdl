@@ -1,0 +1,576 @@
+table _Measures
+	lineageTag: ffbe7906-e6dc-4c61-be9b-3b7239317891
+
+	measure _HTML_Planning_Table = ```
+			
+			          VAR _header = "<table style='width:100%;border-collapse:collapse;font-family:Segoe UI,sans-serif;font-size:11px'><thead><tr
+			  style='background:#106EBE;color:white'><th style='padding:9px 10px;text-align:left'>CS Start</th><th style='padding:9px 10px;text-align:left'>Milestone
+			  Date</th><th style='padding:9px 10px;text-align:right'>Amount (€)</th><th style='padding:9px 10px;text-align:center'>Status</th><th style='padding:9px
+			  10px;text-align:center'>Timeline</th></tr></thead><tbody>"
+			          VAR _rows = CONCATENATEX(
+			              TOPN(150, Milestones, Milestones[Milestone date], ASC),
+			              VAR _sc = Milestones[msdyn_invoicestatus]
+			              VAR _st = Milestones[MilestoneStatus]
+			              VAR _col = IF(_sc=192350003,"#107C10",IF(_sc=192350001,"#FF8C00","#D13438"))
+			              VAR _tl = IF(_sc=192350003,"✅ Done",IF(Milestones[Milestone date]<TODAY(),"⚠️ Overdue",IF(Milestones[Milestone date]<=TODAY()+90,"⚡ Next
+			  90d","📅 Planned")))
+			              RETURN "<tr style='border-bottom:1px solid #F0F0F0'><td style='padding:7px 10px;color:#605E5C'>" & FORMAT(Milestones[Date],"DD/MM/YYYY") &
+			  "</td><td style='padding:7px 10px;color:#605E5C'>" & FORMAT(Milestones[Milestone date],"DD/MM/YYYY") & "</td><td style='padding:7px
+			  10px;text-align:right;font-weight:600'>€" & FORMAT(Milestones[Line Amount],"#,##0") & "</td><td style='padding:7px 10px;text-align:center'><span
+			  style='background:" & _col & ";color:white;padding:2px 7px;border-radius:10px;font-size:10px'>" & _st & "</span></td><td style='padding:7px
+			  10px;text-align:center'>" & _tl & "</td></tr>",
+			              "",
+			              Milestones[Milestone date], ASC
+			          )
+			          RETURN _header & _rows & "</tbody></table>"
+			```
+		isHidden
+		lineageTag: 16bb9735-a907-481f-b709-0bb8032e18ae
+
+	measure 'Total Budget' = CALCULATE(SUM(Milestones[Line Amount]), ALL(Dates))
+		lineageTag: 3c882e1b-f8ea-4aba-bd86-5bae203ce14e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Invoiced' = SUM(Invoices[Total Amount])
+		lineageTag: 6e4faf78-faf9-48f5-9b84-e1e257dc8d54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Milestones Amount' = ```
+			
+			        SUM(Milestones[Line Amount])
+			```
+		isHidden
+		lineageTag: 03eee595-81e4-4b91-a98d-ac500270a8d9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Milestones Posted' = CALCULATE(SUM(Milestones[Line Amount]), Milestones[msdyn_invoicestatus] = 192350003, ALL(Dates))
+		isHidden
+		lineageTag: 374ebed7-4fc4-45a8-b5d8-e0f49b4176a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Milestones Pending' = CALCULATE(SUM(Milestones[Line Amount]), Milestones[msdyn_invoicestatus] <> 192350003, ALL(Dates))
+		lineageTag: 650dc191-10fe-4bce-a619-9a64498ac4b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Milestones Ready' = CALCULATE(SUM(Milestones[Line Amount]), Milestones[msdyn_invoicestatus] = 192350001, ALL(Dates))
+		lineageTag: e9595a05-2d74-4ec2-8aeb-cad07a1481d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Budget' = [Total Budget] - [Total Milestones Amount]
+		lineageTag: d180d06c-2a73-49c8-bfc6-e516245ea182
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Budget Pct' = DIVIDE([Remaining Budget], [Total Budget], 0)
+		lineageTag: 28e78f6c-5353-44c6-b260-7187a465f32a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'WANI Balance' = [Total Milestones Posted] - [Total WANI]
+		lineageTag: 3b6f4ff2-776b-4256-9c55-244ce8062fdb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Project Count' = COUNTROWS(Projects)
+		formatString: 0
+		lineageTag: a67e5b51-cc68-4a58-9efd-deae8115b002
+
+	measure 'Upcoming Milestones' = CALCULATE(COUNTROWS(Milestones), Milestones[Milestone date] > TODAY())
+		formatString: 0
+		lineageTag: dde9e8ac-2913-439e-964b-c05c1f0d269e
+
+	measure 'Upcoming Amount' =
+			CALCULATE(SUM(Milestones[Line Amount]), Milestones[Milestone date] > TODAY(), Milestones[msdyn_invoicestatus] <>
+			  192350003)
+		lineageTag: 04f10b4c-1918-43cd-b2c6-374c5f29b2e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Card' = "€" & FORMAT([Total Budget] / 1000000, "0.0") & "M"
+		isHidden
+		lineageTag: cd5d1d6f-63bc-418e-a726-5e2c94bee90c
+
+	measure 'Remaining Card' = "€" & FORMAT([Remaining Budget] / 1000000, "0.0") & "M (" & FORMAT([Remaining Budget Pct], "0%") & ")"
+		isHidden
+		lineageTag: 41e1c3f6-da3c-4de9-b0a8-18206f55982e
+
+	measure 'Invoiced Card' = "€" & FORMAT([Total Invoiced] / 1000000, "0.0") & "M"
+		isHidden
+		lineageTag: 4bd01c9f-dfd9-441a-be11-86da51ff7b70
+
+	measure 'WANI Card' = "€" & FORMAT([WANI Balance] / 1000000, "0.0") & "M"
+		isHidden
+		lineageTag: a1a32265-c06b-44f2-b394-9c3df2f41feb
+
+	measure _HTML_Budget_Progress = ```
+			
+			          VAR _b = [Total Budget]
+			          VAR _m = [Total Milestones Amount]
+			          VAR _i = [Total Invoiced]
+			          VAR _r = [Remaining Budget]
+			          VAR _pm = FORMAT(DIVIDE(_m,_b,0)*100,"0") & "%"
+			          VAR _pi = FORMAT(DIVIDE(_i,_b,0)*100,"0") & "%"
+			          RETURN
+			          "<div style='font-family:Segoe UI,sans-serif;padding:16px'>" &
+			          "<table style='width:100%;border-collapse:collapse;font-size:13px'>" &
+			          "<tr><td style='padding:10px 0;color:#605E5C;border-bottom:1px solid #F0F0F0'>Original VKI Grant</td><td
+			  style='text-align:right;font-weight:700;font-size:15px;border-bottom:1px solid #F0F0F0'>€" & FORMAT(_b,"#,##0") & "</td></tr>" &
+			          "<tr><td style='padding:10px 0;color:#605E5C;border-bottom:1px solid #F0F0F0'>Revenue Milestones</td><td
+			  style='text-align:right;font-weight:700;color:#0078D4;font-size:15px;border-bottom:1px solid #F0F0F0'>€" & FORMAT(_m,"#,##0") & " <span
+			  style=""font-size:11px"">(" & _pm & ")</span></td></tr>" &
+			          "<tr><td style='padding:10px 0;color:#605E5C;border-bottom:1px solid #F0F0F0'>All Invoiced</td><td
+			  style='text-align:right;font-weight:700;color:#CA5010;font-size:15px;border-bottom:1px solid #F0F0F0'>€" & FORMAT(_i,"#,##0") & " <span
+			  style=""font-size:11px"">(" & _pi & ")</span></td></tr>" &
+			          "<tr><td style='padding:10px 0;font-weight:700;font-size:14px'>Remaining Budget</td><td
+			  style='text-align:right;font-weight:700;font-size:18px;color:" & IF(_r>0,"#107C10","#D13438") & "'>€" & FORMAT(_r,"#,##0") & "</td></tr>" &
+			          "</table></div>"
+			```
+		isHidden
+		lineageTag: 49450a54-bf8d-4bd8-8145-880ea2e15f3c
+
+	measure 'Original VKI Grant' = [Total Budget]
+		isHidden
+		lineageTag: 1c9bfcf3-b2bf-44a8-804d-4f3739747bbe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'WANI Balance RT' = [WANI Balance]
+		isHidden
+		lineageTag: 380e3a52-e8f2-4b66-a647-7dad7752cd72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Revenues Cumulative' = ```
+			
+			  CALCULATE(
+			      [Total Milestones Amount],
+			      FILTER(ALL(Dates), Dates[Date] <= MAX(Dates[Date]))
+			  )
+			```
+		isHidden
+		lineageTag: 38d8e3c8-79aa-4794-a678-b2a6c08c5577
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _HTML_Claimable_Table = ```
+			
+			  VAR _style = "<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe
+			  UI',sans-serif;font-size:11px;background:white;padding:8px}table{width:100%;border-collapse:collapse}thead
+			  tr{background:#106EBE;color:white}th{padding:8px 10px;font-size:10px;font-weight:600;text-align:left;white-space:nowrap}th.r{text-align:right}tbody
+			  tr{border-bottom:1px solid #F0F0F0}tbody tr:hover{background:#F5F5F5}td{padding:6px
+			  10px;font-size:11px}td.r{text-align:right;font-weight:600}td.c{text-align:center}.badge{display:inline-block;padding:2px
+			  8px;border-radius:10px;font-size:10px;font-weight:600;color:white}.bp{background:#107C10}.br{background:#FF8C00}.bn{background:#D13438}tfoot
+			  td{background:#F0F4F8;font-weight:700;padding:8px 10px;border-top:2px solid #106EBE}</style>"
+			  VAR _hdr = "<table><thead><tr><th>Stat Nr</th><th>CS Start</th><th>Milestone Date</th><th class='r'>Amount (€)</th><th
+			  class='c'>Status</th><th>Type</th></tr></thead><tbody>"
+			  VAR _data = ADDCOLUMNS(
+			      Milestones,
+			      "StatNr", RELATED(Projects[VKI Stat Number]),
+			      "ProjType", RELATED(Contracts[VKI Project Type])
+			  )
+			  VAR _rows = CONCATENATEX(
+			      TOPN(150, _data, Milestones[Milestone date], ASC),
+			      "<tr><td><b>" & [StatNr] & "</b></td>" &
+			      "<td>" & FORMAT(Milestones[Date],"DD/MM/YY") & "</td>" &
+			      "<td>" & FORMAT(Milestones[Milestone date],"DD/MM/YY") & "</td>" &
+			      "<td class='r'>€" & FORMAT(Milestones[Line Amount],"#,##0") & "</td>" &
+			      "<td class='c'><span class='badge " &
+			          IF(Milestones[msdyn_invoicestatus]=192350003,"bp",
+			          IF(Milestones[msdyn_invoicestatus]=192350001,"br","bn")) &
+			      "'>" & Milestones[MilestoneStatus] & "</span></td>" &
+			      "<td>" & [ProjType] & "</td></tr>",
+			      "",
+			      Milestones[Milestone date],
+			      ASC
+			  )
+			  VAR _foot = "<tfoot><tr><td colspan='3'>TOTAL</td><td class='r'>€" & FORMAT([Total Milestones Amount],"#,##0") & "</td><td colspan='2'></td></tr></tfoot>"
+			  RETURN _style & _hdr & _rows & "</tbody>" & _foot & "</table>"
+			```
+		isHidden
+		lineageTag: 8f57f497-5fce-4d5e-b5a7-c00febec3585
+
+	measure _HTML_Overview_KPIs = ```
+			
+			  VAR _b  = [Total Budget]
+			  VAR _m  = [Total Milestones Amount]
+			  VAR _i  = [Total Invoiced]
+			  VAR _w  = [WANI Balance]
+			  VAR _r  = [Remaining Budget]
+			  VAR _bup = DIVIDE(_m, _b, 0)
+			  VAR _rrp = DIVIDE(_r, _b, 0)
+			  VAR _bf = "€" & FORMAT(_b/1000000,"0.0") & "M"
+			  VAR _mf = "€" & FORMAT(_m/1000000,"0.0") & "M"
+			  VAR _if = "€" & FORMAT(_i/1000000,"0.0") & "M"
+			  VAR _wf = "€" & FORMAT(_w/1000000,"0.0") & "M"
+			  VAR _rf = "€" & FORMAT(_r/1000000,"0.0") & "M"
+			  VAR _rp = FORMAT(_rrp * 100,"0") & "% restant"
+			  VAR _bp = FORMAT(_bup * 100,"0.0") & "%"
+			  VAR _bw = FORMAT(IF(_bup > 1, 100, _bup * 100),"0") & "%"
+			  RETURN
+			  "<div style='font-family:Segoe UI,sans-serif;padding:10px'>" &
+			  "<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px'>" &
+			  "<div style='background:linear-gradient(135deg,#0078D4,#005A9E);border-radius:8px;padding:12px 14px;color:white'><div
+			  style='font-size:9px;opacity:0.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px'>Original Budget</div><div
+			  style='font-size:20px;font-weight:700'>" & _bf & "</div></div>" &
+			  "<div style='background:linear-gradient(135deg,#107C10,#0B5E0B);border-radius:8px;padding:12px 14px;color:white'><div
+			  style='font-size:9px;opacity:0.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px'>Revenues</div><div
+			  style='font-size:20px;font-weight:700'>" & _mf & "</div></div>" &
+			  "<div style='background:linear-gradient(135deg,#CA5010,#A03D0A);border-radius:8px;padding:12px 14px;color:white'><div
+			  style='font-size:9px;opacity:0.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px'>All Invoiced</div><div
+			  style='font-size:20px;font-weight:700'>" & _if & "</div></div>" &
+			  "</div>" &
+			  "<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px'>" &
+			  "<div style='background:linear-gradient(135deg,#038387,#025F63);border-radius:8px;padding:12px 14px;color:white'><div
+			  style='font-size:9px;opacity:0.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px'>WANI Balance</div><div
+			  style='font-size:20px;font-weight:700'>" & _wf & "</div><div style='font-size:9px;opacity:0.75'>Posted - Invoiced</div></div>" &
+			  "<div style='background:linear-gradient(135deg,#8764B8,#6A4E9C);border-radius:8px;padding:12px 14px;color:white'><div
+			  style='font-size:9px;opacity:0.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px'>Remaining Budget</div><div
+			  style='font-size:20px;font-weight:700'>" & _rf & "</div><div style='font-size:9px;opacity:0.75'>" & _rp & "</div></div>" &
+			  "<div style='background:white;border:1px solid #E0E0E0;border-radius:8px;padding:12px 14px'><div
+			  style='font-size:9px;color:#605E5C;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px'>Budget Used</div><div
+			  style='font-size:20px;font-weight:700;color:#0078D4'>" & _bp & "</div><div
+			  style='background:#EDEBE9;height:8px;border-radius:4px;margin-top:6px;overflow:hidden'><div style='background:#0078D4;height:100%;width:" & _bw &
+			  "'></div></div></div>" &
+			  "</div></div>"
+			```
+		isHidden
+		lineageTag: 5fc2fce0-8aab-4d79-b009-18291b711053
+
+	measure 'Total Hours' = SUM(OdooData[Hours])
+		isHidden
+		lineageTag: 48c55a9f-f337-44e7-8573-d699390fe37a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Direct Costs' = SUM(OdooData[Amount])
+		isHidden
+		lineageTag: 1b00c6d4-6456-4185-98c4-28f018c82d03
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Hourly Rate' = DIVIDE([Total Direct Costs], [Total Hours], 0)
+		isHidden
+		lineageTag: a47b9898-07f3-45c5-ad7e-627a6d71b75d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Timesheet Lines Count' = COUNTROWS(OdooData)
+		formatString: 0
+		isHidden
+		lineageTag: 964219ce-2e66-4b7e-8e3e-5c134c932e8e
+
+	measure 'Active Employees Count' = DISTINCTCOUNT(OdooData[Employee])
+		formatString: 0
+		isHidden
+		lineageTag: 96484225-73ac-4e23-bb4c-d54ffe4d9b6a
+
+	measure 'Remaining vs Revenues' = ```
+			
+			  [Total Budget] - [Total Milestones Posted]
+			```
+		isHidden
+		lineageTag: 76568f44-96fb-4c18-90e0-96b84fc37171
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining vs Claimable' = [Total Budget] - [Total Claimable]
+		isHidden
+		lineageTag: 26787e88-f53e-4d39-9caa-844227fcb856
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Project Revenues RT' = [Total Milestones Posted]
+		isHidden
+		lineageTag: 28fa26ed-f809-4851-be6c-05783263361c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _HTML_Budget_Chart = ```
+			
+			  VAR _Bgt = [Total Budget]
+			  VAR _BgtK = ROUND(_Bgt / 1000, 1)
+			  VAR _Qtrs = CALCULATETABLE(
+			      SUMMARIZE(Dates, Dates[YearQuarter]),
+			      FILTER(Dates, YEAR(Dates[Date]) >= 2020),
+			      FILTER(Dates, Dates[Date] <= TODAY())
+			  )
+			  VAR _n = COUNTROWS(_Qtrs)
+			  VAR _Data = ADDCOLUMNS(
+			      _Qtrs,
+			      "RevK", ROUND(DIVIDE(CALCULATE(
+			          SUM(Milestones[Line Amount]),
+			          Milestones[msdyn_invoicestatus] = 192350003,
+			          FILTER(ALL(Dates), Dates[YearQuarter] <= [YearQuarter])
+			      ), 1000), 1),
+			      "Rk", RANKX(_Qtrs, [YearQuarter], , ASC, Dense)
+			  )
+			  VAR _yMx = _BgtK * 1.15
+			  VAR _W = 680  VAR _H = 170  VAR _PL = 52  VAR _PT = 8  VAR _PB = 28
+			  VAR _TW = _PL + _W + 10  VAR _TH = _PT + _H + _PB
+			  VAR _PtsBgt = CONCATENATEX(_Data,
+			      FORMAT(_PL + _W * ([Rk]-1) / IF(_n>1,_n-1,1), "0") & "," &
+			      FORMAT(_PT + _H * (1 - _BgtK / _yMx), "0"),
+			      " ", [YearQuarter], ASC)
+			  VAR _PtsRev = CONCATENATEX(_Data,
+			      FORMAT(_PL + _W * ([Rk]-1) / IF(_n>1,_n-1,1), "0") & "," &
+			      FORMAT(_PT + _H * (1 - (_BgtK - [RevK]) / _yMx), "0"),
+			      " ", [YearQuarter], ASC)
+			  VAR _XLbl = CONCATENATEX(_Data,
+			      IF(MOD([Rk]-1, CEILING(_n/8,1)) = 0 || [Rk] = _n,
+			      "<text x='" & FORMAT(_PL + _W*([Rk]-1)/IF(_n>1,_n-1,1),"0") &
+			      "' y='" & FORMAT(_PT+_H+18,"0") &
+			      "' text-anchor='middle' font-size='9' fill='#888'>" & [YearQuarter] & "</text>", ""),
+			      "", [YearQuarter], ASC)
+			  VAR _YLbl =
+			      "<text x='" & FORMAT(_PL-4,"0") & "' y='" & FORMAT(_PT+4,"0") & "' text-anchor='end' font-size='9' fill='#888'>" & FORMAT(_yMx,"0") & "K</text>" &
+			      "<text x='" & FORMAT(_PL-4,"0") & "' y='" & FORMAT(_PT+_H/2+4,"0") & "' text-anchor='end' font-size='9' fill='#888'>" & FORMAT(_yMx/2,"0") & "K</text>" &
+			      "<text x='" & FORMAT(_PL-4,"0") & "' y='" & FORMAT(_PT+_H+4,"0") & "' text-anchor='end' font-size='9' fill='#888'>0K</text>"
+			  VAR _Grid =
+			      "<line x1='" & _PL & "' y1='" & FORMAT(_PT,"0") & "' x2='" & FORMAT(_PL+_W,"0") & "' y2='" & FORMAT(_PT,"0") & "' stroke='#F0F0F0' stroke-width='1'/>" &
+			      "<line x1='" & _PL & "' y1='" & FORMAT(_PT+_H/2,"0") & "' x2='" & FORMAT(_PL+_W,"0") & "' y2='" & FORMAT(_PT+_H/2,"0") & "' stroke='#F0F0F0' stroke-width='1'/>" &
+			      "<line x1='" & _PL & "' y1='" & FORMAT(_PT+_H,"0") & "' x2='" & FORMAT(_PL+_W,"0") & "' y2='" & FORMAT(_PT+_H,"0") & "' stroke='#E0E0E0' stroke-width='1'/>"
+			  RETURN
+			  "<div style='font-family:Segoe UI,sans-serif;padding:8px;background:white'>" &
+			  "<div style='font-size:12px;font-weight:600;text-align:center;margin-bottom:5px'>Remaining Budget over Time</div>" &
+			  "<div style='display:flex;gap:16px;justify-content:center;margin-bottom:5px;font-size:10px'>" &
+			  "<span><span style='display:inline-block;width:14px;height:3px;background:#0078D4;margin-right:3px;vertical-align:middle'></span>Initial Grant</span>" &
+			  "<span><span style='display:inline-block;width:14px;height:3px;background:#CA5010;margin-right:3px;vertical-align:middle'></span>Remaining vs Revenues Booked</span></div>" &
+			  "<svg width='100%' viewBox='0 0 " & FORMAT(_TW,"0") & " " & FORMAT(_TH,"0") & "'>" &
+			  _Grid & _YLbl &
+			  "<polyline points='" & _PtsBgt & "' fill='none' stroke='#0078D4' stroke-width='2'/>" &
+			  "<polyline points='" & _PtsRev & "' fill='none' stroke='#CA5010' stroke-width='2'/>" &
+			  _XLbl &
+			  "</svg></div>"
+			```
+		isHidden
+		lineageTag: cc9c024e-566d-4677-ab63-a9002dadcec3
+
+	measure Revenue_BOB =
+			CALCULATE(
+			    -SUM(BOB_OUT[AccountingCurrencyAmount]),
+			    BOB_OUT[PostingType] = "CustRevenue"
+			)
+		formatString: #,##0 EUR
+		isHidden
+		displayFolder: Revenues
+		lineageTag: 72edb33c-8f7d-4c37-a796-8b23429ca44b
+
+	measure 'Revenue Invoiced D365' =
+			CALCULATE(
+			    -SUM(BOB_OUT[AccountingCurrencyAmount]),
+			    BOB_OUT[PostingType] IN {"CustRevenue", "ProjOnAccount"}
+			)
+		formatString: € #,##0
+		displayFolder: Revenues
+		lineageTag: de17c730-9fab-4c94-a02f-84e726f906da
+
+	measure 'WANI D365' =
+			CALCULATE(
+			    SUM(BOB_OUT[AccountingCurrencyAmount]),
+			    CONTAINSSTRING(BOB_OUT[LedgerDimensionValuesJson], "37000000")
+			)
+		formatString: € #,##0
+		displayFolder: Revenues
+		lineageTag: 8b762c0b-59a9-4437-9476-de0b36618dc8
+
+	measure 'Project Revenues D365' = COALESCE([Revenue Invoiced D365], 0) + COALESCE([WANI D365], 0)
+		formatString: € #,##0
+		displayFolder: Revenues
+		lineageTag: 9c6bf5b4-43c2-45e0-852f-f0a601b076c3
+
+	measure 'Revenue D365 Card' = "\u20ac" & FORMAT([Project Revenues D365] / 1000000, "0.0") & "M"
+		isHidden
+		displayFolder: Revenues
+		lineageTag: 79e56190-42f1-46a6-8cb3-3b729858272d
+
+	measure 'WANI New D365' =
+			CALCULATE(
+			    SUM(BOB_OUT[AccountingCurrencyAmount]),
+			    CONTAINSSTRING(BOB_OUT[LedgerDimensionValuesJson], "37000000"),
+			    BOB_OUT[AccountingCurrencyAmount] > 0
+			)
+		formatString: € #,##0
+		displayFolder: Revenues
+		lineageTag: 8b84be4a-5baf-49e7-aec8-08529a3b8235
+
+	measure 'WANI Cleared D365' =
+			CALCULATE(
+			    SUM(BOB_OUT[AccountingCurrencyAmount]),
+			    CONTAINSSTRING(BOB_OUT[LedgerDimensionValuesJson], "37000000"),
+			    BOB_OUT[AccountingCurrencyAmount] < 0
+			)
+		formatString: € #,##0
+		displayFolder: Revenues
+		lineageTag: 1246b267-24b1-426d-ba42-55fc874ce570
+
+	measure 'WANI Balance D365' =
+			
+			VAR _maxDate = MAX(GL_HEADER[AccountingDate_Date])
+			RETURN
+			CALCULATE(
+			    SUM(BOB_OUT[AccountingCurrencyAmount]),
+			    CONTAINSSTRING(BOB_OUT[LedgerDimensionValuesJson], "37000000"),
+			    REMOVEFILTERS(GL_HEADER),
+			    REMOVEFILTERS(Dates),
+			    GL_HEADER[AccountingDate_Date] <= _maxDate
+			)
+		formatString: € #,##0
+		displayFolder: Revenues
+		lineageTag: 6c75ee6a-fab9-4002-bd25-f4a0ebf0da6c
+
+	measure 'Revenues D365' =
+			
+			VAR _inv  = COALESCE([Revenue Invoiced D365], 0)
+			VAR _wNew = COALESCE([WANI New D365], 0)
+			VAR _wClr = COALESCE([WANI Cleared D365], 0)
+			RETURN _inv + _wNew + _wClr
+		formatString: € #,##0
+		displayFolder: Revenues
+		lineageTag: 37fd74e9-0f12-4464-bdbf-c00c795efbb6
+
+	measure 'Direct Costs msdyn D365' =
+			CALCULATE(
+			    SUM(msdyn_actual[Amount]),
+			    msdyn_actual[Transaction Type] = "Cost",
+			    FILTER(msdyn_actual, LEFT(msdyn_actual[Transaction category], 8) <> "48000000")
+			)
+		formatString: #,0.0
+		lineageTag: 11b9f7bc-21f7-42f8-8afb-1f142744dee8
+
+	measure 'DC Travel msdyn D365' =
+			CALCULATE(
+			    SUM(msdyn_actual[Amount]),
+			    msdyn_actual[Transaction Type] = "Cost",
+			    msdyn_actual[Transaction category] IN {"Meals","Hotel","Mileage","Metro/tram/bus/taxi","Parking","Air ticket","Train ticket","Taxi"}
+			)
+		formatString: #,0.0
+		lineageTag: 585aaade-4040-4cf7-ab69-ffedfd41da32
+
+	measure 'DC Other msdyn D365' =
+			CALCULATE(
+			    SUM(msdyn_actual[Amount]),
+			    msdyn_actual[Transaction Type] = "Cost",
+			    NOT msdyn_actual[Transaction category] IN {"Meals","Hotel","Mileage","Metro/tram/bus/taxi","Parking","Air ticket","Train ticket","Taxi"}
+			)
+		formatString: #,0.0
+		lineageTag: 4c69bacf-509b-4e14-be6c-72baf8923351
+
+	measure 'Direct Costs D365' = [Direct Costs msdyn D365]
+		formatString: #,0.0
+		isHidden
+		lineageTag: 81ffe486-64e3-4ca0-a34e-da23fdc6f804
+
+	measure 'Direct Costs + VKI OH D365' = [Direct Costs + OH msdyn D365]
+		formatString: #,0.0
+		isHidden
+		lineageTag: 51c0402b-3bec-4449-915e-e8636c719621
+
+	measure 'Claimable Costs D365' = ```
+			
+			SUMX(
+			    FILTER(
+			        msdyn_actual,
+			        msdyn_actual[Transaction Type] = "Cost"
+			        && NOT ISBLANK(msdyn_actual[Expense Type D365])
+			    ),
+			    VAR _exp  = msdyn_actual[Expense Type D365]
+			    VAR _proj = RELATED(Projects[ContractType])
+			    VAR _isT1T3    = _exp = "T1/T3 Manpower"
+			    VAR _isT5Subco = _exp = "T5 Subcontractors"
+			    VAR _isT4      = _exp IN {"T4 Amortization", "T4 Amortization ICT"}
+			    VAR _coef = SWITCH(TRUE(),
+			        LEFT(_proj, 2) = "EU",   IF(_isT5Subco, 1.0, 1.25),
+			        _proj = "FOD",            1.15,
+			        _proj = "PRODEX",         IF(_isT5Subco || _isT4, 1.0, 1.05),
+			        _proj = "RW",             IF(_isT1T3, BLANK(), 1.17),
+			        _proj = "VLAIO16",        IF(_isT1T3, BLANK(), 1.0),
+			        _proj = "VLAIO21",        IF(_isT1T3, BLANK(), 1.0),
+			        1.0
+			    )
+			    RETURN msdyn_actual[Amount] * _coef
+			)
+			
+			```
+		lineageTag: 38b5ee85-1a46-4510-a8fa-43574c7e3e7a
+
+	measure 'Direct Costs OH msdyn D365' = ```
+			
+			SUMX(
+			    FILTER(
+			        msdyn_actual,
+			        msdyn_actual[Transaction Type] = "Cost"
+			        && msdyn_actual[Expense Type D365] = "T1/T3 Manpower"
+			    ),
+			    msdyn_actual[Amount] * 0.55
+			)
+			
+			```
+		lineageTag: 1a9ae855-9455-4864-a542-5bbf49d76238
+
+	measure 'Direct Costs + OH msdyn D365' = ```
+			
+			COALESCE([Direct Costs msdyn D365], 0)
+			+ COALESCE([Direct Costs OH msdyn D365], 0)
+			
+			```
+		lineageTag: fc0a3679-9a42-403a-9d94-42b3d2a2e0c7
+
+	measure 'Payments In D365' = ```
+			
+			CALCULATE(
+			    SUM(msdyn_actual[Amount]),
+			    msdyn_actual[Transaction Type] = "Billed Sales"
+			)
+			
+			```
+		formatString: "€"#,0.00
+		lineageTag: e5339a8b-e948-4778-a411-1097132218a1
+
+	measure 'Payments to Partners D365' = ```
+			
+			CALCULATE(
+			    SUM(msdyn_actual[Amount]),
+			    msdyn_actual[Transaction category] = "48000000"
+			)
+			
+			```
+		formatString: "€"#,0.00
+		lineageTag: 1f071909-8f4c-492d-bb55-b3f0f979bc38
+
+	measure 'Advanced Payments D365' = ```
+			
+			CALCULATE(
+			    SUM(BOB_OUT[AccountingCurrencyAmount]),
+			    LEFT(BOB_OUT[MainAccount], 2) = "46"
+			)
+			
+			```
+		formatString: "€"#,0.00
+		lineageTag: 22b2b317-77f0-4fa4-a78e-fe75a370eb5e
+
+	measure 'Planned VKI' = SUM(Milestones[Line Amount])
+		formatString: "€"#,0.00
+		isHidden
+		lineageTag: 78d50ef2-3ff1-4e1a-a8ea-0125225ac03c
+
+	column x
+		formatString: 0
+		lineageTag: ce3b93aa-79c3-4b59-a178-da030da09c4e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [x]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("x", 0)
+
+	annotation PBI_Id = de255690dd984f928d6b485ab907568c
+

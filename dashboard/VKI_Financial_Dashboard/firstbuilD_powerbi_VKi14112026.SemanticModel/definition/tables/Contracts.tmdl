@@ -1,0 +1,107 @@
+table Contracts
+	lineageTag: 0e8d3d4d-e593-4680-b382-5ab9c6933860
+
+	column Order
+		dataType: string
+		lineageTag: 566d4f05-ea6b-4dcf-95c0-096cf1954870
+		summarizeBy: none
+		sourceColumn: ContractID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: f0410874-5985-4c3e-bc83-ee92499387f6
+		summarizeBy: none
+		sourceColumn: ContractName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: 68293b3c-0533-4ea1-ae2a-dbaf5507eca0
+		summarizeBy: none
+		sourceColumn: ContractNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column craef_vkiprojecttype
+		dataType: string
+		lineageTag: 1bd8bfef-7dee-4076-9e79-58945527273c
+		summarizeBy: none
+		sourceColumn: ProjectTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VKI Project Type'
+		dataType: string
+		lineageTag: 4a1990d2-51cc-44c2-a28b-0af5ec6f7dbe
+		summarizeBy: none
+		sourceColumn: ProjectTypeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerid
+		dataType: string
+		lineageTag: c9399ee4-c159-40cd-9e05-ccf55241fc5a
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: 31d793a5-3aab-4d77-82e1-090a187439eb
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column craef_vkirole
+		dataType: int64
+		formatString: 0
+		lineageTag: e458f24d-e6a3-4376-ad83-9da9f0dfff4c
+		summarizeBy: sum
+		sourceColumn: RoleCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VKI Role'
+		dataType: string
+		lineageTag: d50c9fa7-dc28-40b2-bff8-658dee87501a
+		summarizeBy: none
+		sourceColumn: VKIRole
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Contracts = m
+		mode: import
+		source =
+				let
+				      Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				      Nav = Source{[Schema="dbo",Item="salesorder"]}[Data],
+				      Filter = Table.SelectRows(Nav, each [msdyn_ordertype] = 192350001),
+				      Cols = Table.SelectColumns(Filter, {
+				          "salesorderid","name","ordernumber",
+				          "craef_vkiprojecttype","craef_vkiprojecttypename",
+				          "customerid","customeridname",
+				          "craef_vkirole","craef_vkirolename"
+				      }),
+				      Renamed = Table.RenameColumns(Cols, {
+				          {"salesorderid","ContractID"},
+				          {"name","ContractName"},
+				          {"ordernumber","ContractNumber"},
+				          {"craef_vkiprojecttype","ProjectTypeID"},
+				          {"craef_vkiprojecttypename","ProjectTypeName"},
+				          {"customerid","CustomerID"},
+				          {"customeridname","CustomerName"},
+				          {"craef_vkirole","RoleCode"},
+				          {"craef_vkirolename","VKIRole"}
+				      })
+				  in
+				      Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

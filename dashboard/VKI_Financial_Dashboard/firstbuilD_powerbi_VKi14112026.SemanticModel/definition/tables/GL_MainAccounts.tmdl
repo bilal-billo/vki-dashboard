@@ -1,0 +1,42 @@
+table GL_MainAccounts
+	lineageTag: cf3b3f08-41e7-4a03-9880-dd2bcddd307a
+
+	column MainAccountId
+		dataType: string
+		lineageTag: ff02ab65-0957-49ca-9785-1d1db0a99f47
+		summarizeBy: none
+		sourceColumn: MainAccountId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 82eb8f41-f35b-447d-aae3-71d2c65ced5f
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column MainAccountCategory
+		dataType: string
+		lineageTag: e08b7c4f-3c41-4d4d-89e6-dda3bdd15b9e
+		summarizeBy: none
+		sourceColumn: MainAccountCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GL_MainAccounts = m
+		mode: import
+		source =
+				let
+				    Source = OData.Feed(
+				        "https://vki-prod.operations.eu.dynamics.com/data/MainAccounts?$select=MainAccountId,Name,MainAccountCategory",
+				        null, [Implementation="2.0"]
+				    )
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

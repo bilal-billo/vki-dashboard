@@ -1,0 +1,195 @@
+table OdooData
+	lineageTag: e442e87d-4c83-4e3f-991c-99eea67464d8
+
+	column PeriodDate = ```
+			
+			  VAR _pos = FIND("/", OdooData[period])
+			  VAR _month = VALUE(LEFT(OdooData[period], _pos - 1))
+			  VAR _year = VALUE(RIGHT(OdooData[period], 4))
+			  RETURN DATE(_year, _month, 1)
+			```
+		formatString: General Date
+		lineageTag: 78725c7d-7c97-4ee4-8233-bcd9803ac306
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 61472d5c-660c-4d20-bf66-96d18b2b8b01
+			defaultHierarchy: LocalDateTable_754336e0-0a16-4896-a419-da956f87aa02.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column OdooID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2546e4b9-6b64-4c85-8631-990412372db8
+		summarizeBy: count
+		sourceColumn: OdooID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Employee
+		dataType: string
+		lineageTag: 7d75b12c-219e-4627-93b6-f2f21d536992
+		summarizeBy: none
+		sourceColumn: Employee
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e618131a-1f96-4509-833f-0331df17346d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ProjectLabel
+		dataType: string
+		lineageTag: fd736d7d-fadd-44f2-ae1f-3abb844c7375
+		summarizeBy: none
+		sourceColumn: ProjectLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hours
+		dataType: double
+		lineageTag: adb690a4-4926-4ad9-a0e3-5685cd9c4115
+		summarizeBy: sum
+		sourceColumn: Hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Amount
+		dataType: double
+		lineageTag: 8c925860-784c-4289-8f47-86a7de36fdad
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FinancialAccount
+		dataType: string
+		lineageTag: a50a5fd5-bc6a-4b8d-ae7d-0571891e8260
+		summarizeBy: none
+		sourceColumn: FinancialAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		dataType: string
+		lineageTag: 2765ac57-a4cf-4695-b8c8-d841716103b4
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Matricule
+		dataType: string
+		lineageTag: 00044151-e2a2-423b-8d8a-dccad25bb343
+		summarizeBy: none
+		sourceColumn: Matricule
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatNumber
+		dataType: string
+		lineageTag: 448e722a-c388-48ec-8578-20f566e1f3a3
+		summarizeBy: none
+		sourceColumn: StatNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnalyticalJournal
+		dataType: string
+		lineageTag: ff79aa7e-fe15-4074-920b-e9b34d45bf97
+		summarizeBy: none
+		sourceColumn: AnalyticalJournal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: f3c55a0c-7f64-47f2-b07c-64bb33fd3a10
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProjectID
+		dataType: string
+		lineageTag: e893da03-d838-4fa3-9170-b096ddf13610
+		summarizeBy: none
+		sourceColumn: ProjectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount_OH = ```
+			
+			OdooData[Amount] *
+			SWITCH(TRUE(),
+			    OdooData[AnalyticalJournal] = "T1 Manpower", 1.55,
+			    LEFT(OdooData[AnalyticalJournal], 2) = "T3", 1.55,
+			    1
+			)
+			
+			```
+		dataType: double
+		lineageTag: f1312d38-41be-4ea2-bdf9-b5a6f516b878
+
+	partition OdooData = m
+		mode: import
+		source =
+				let
+				    Source = OData.Feed("https://operations-vki-prod.crm4.dynamics.com/api/data/v9.2/vki_odoo_prod_datas", null, [Implementation="2.0"]),
+				    Cols = Table.SelectColumns(Source, {
+				        "vki_externalprimarykey", "vki_employee", "vki_date", "vki_project",
+				        "vki_hours", "vki_amount", "vki_analyticjournal", "vki_financialaccount",
+				        "vki_period", "vki_matricule", "vki_description", "vki_projectid"
+				    }),
+				    Normalized = Table.AddColumn(Cols, "StatNumber", each
+				        let
+				            code = Text.Start([vki_project], 8),
+				            fixed = if Text.Length(code) >= 3 and Text.At(code, 2) = "O"
+				                    then Text.Start(code, 2) & "R" & Text.Middle(code, 3)
+				                    else code
+				        in fixed
+				    ),
+				    Reclassified = Table.AddColumn(Normalized, "AnalyticalJournal", each
+				        if [vki_analyticjournal] = "UNASSIGNED" and [vki_employee] <> "0"
+				        then "T1 Manpower"
+				        else [vki_analyticjournal]
+				    ),
+				    Dropped = Table.RemoveColumns(Reclassified, {"vki_analyticjournal"}),
+				    Renamed = Table.RenameColumns(Dropped, {
+				        {"vki_externalprimarykey", "OdooID"},
+				        {"vki_employee",           "Employee"},
+				        {"vki_date",               "Date"},
+				        {"vki_project",            "ProjectLabel"},
+				        {"vki_hours",              "Hours"},
+				        {"vki_amount",             "Amount"},
+				        {"vki_financialaccount",   "FinancialAccount"},
+				        {"vki_period",             "Period"},
+				        {"vki_matricule",          "Matricule"},
+				        {"vki_description",        "Description"},
+				        {"vki_projectid",          "ProjectID"}
+				    }),
+				    Types = Table.TransformColumnTypes(Renamed, {
+				        {"Date", type date},
+				        {"Hours", type number},
+				        {"Amount", type number}
+				    })
+				in
+				    Types
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

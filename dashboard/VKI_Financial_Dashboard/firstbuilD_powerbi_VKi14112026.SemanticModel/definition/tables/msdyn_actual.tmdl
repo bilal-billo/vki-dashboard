@@ -1,0 +1,2005 @@
+table msdyn_actual
+	lineageTag: 447388c0-16d1-46e8-8586-7e6fc01b75f9
+
+	column Actual
+		dataType: string
+		isHidden
+		lineageTag: a8b3f363-94f5-45a1-9326-4cdcc72db8ac
+		summarizeBy: none
+		sourceColumn: msdyn_actualid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created On'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 7d4e6077-3621-456e-8c6c-257019012d23
+		summarizeBy: none
+		sourceColumn: createdon
+
+		variation Variation
+			isDefault
+			relationship: a90b09a4-79e3-4afe-8a89-89012c564784
+			defaultHierarchy: LocalDateTable_a917d08e-ad94-420f-b1a0-c488e7f1f540.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdby
+		dataType: string
+		isHidden
+		lineageTag: ee525fa4-3df6-403b-ad40-1aff206073d2
+		summarizeBy: none
+		sourceColumn: createdby
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified On'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: b0fa483c-8645-499d-a2a7-682276ecf597
+		summarizeBy: none
+		sourceColumn: modifiedon
+
+		variation Variation
+			isDefault
+			relationship: 27108291-871f-4eb6-868f-fad04d5a7ee5
+			defaultHierarchy: LocalDateTable_334313c2-ed86-48df-9c17-2e3dd20d28a4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedby
+		dataType: string
+		isHidden
+		lineageTag: 4ae97258-558f-4b76-94e7-4f450927297f
+		summarizeBy: none
+		sourceColumn: modifiedby
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdonbehalfby
+		dataType: string
+		isHidden
+		lineageTag: f38f9934-2c92-49d1-95c3-858c0d7fb328
+		summarizeBy: none
+		sourceColumn: createdonbehalfby
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedonbehalfby
+		dataType: string
+		isHidden
+		lineageTag: f66f7d74-c8b3-4693-ad87-3a439e0f1b34
+		summarizeBy: none
+		sourceColumn: modifiedonbehalfby
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created By'
+		dataType: string
+		isHidden
+		lineageTag: 8472c443-456b-4270-bb8a-3efdf73034b6
+		summarizeBy: none
+		sourceColumn: createdbyname
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdbyyominame
+		dataType: string
+		isHidden
+		lineageTag: f2cfc64d-98dd-4583-bb55-0b9fadea60ea
+		summarizeBy: none
+		sourceColumn: createdbyyominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created By (Delegate)'
+		dataType: string
+		isHidden
+		lineageTag: 3e5a0571-0795-4dbf-b846-c12f139a1607
+		summarizeBy: none
+		sourceColumn: createdonbehalfbyname
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdonbehalfbyyominame
+		dataType: string
+		isHidden
+		lineageTag: 5f7c0c68-049c-4cde-a9e3-30ecf546a058
+		summarizeBy: none
+		sourceColumn: createdonbehalfbyyominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified By'
+		dataType: string
+		isHidden
+		lineageTag: 9852e2f7-6baf-4ae7-9359-47bf892efbc2
+		summarizeBy: none
+		sourceColumn: modifiedbyname
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedbyyominame
+		dataType: string
+		isHidden
+		lineageTag: 9ab981bf-e8ed-4f68-b64a-e90083a6a233
+		summarizeBy: none
+		sourceColumn: modifiedbyyominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Modified By (Delegate)'
+		dataType: string
+		isHidden
+		lineageTag: 752a62f0-6294-4013-a5f9-1adc5b4efc44
+		summarizeBy: none
+		sourceColumn: modifiedonbehalfbyname
+
+		annotation SummarizationSetBy = Automatic
+
+	column modifiedonbehalfbyyominame
+		dataType: string
+		isHidden
+		lineageTag: 51a5b089-cd75-46a3-9dbd-9be4206b6eb5
+		summarizeBy: none
+		sourceColumn: modifiedonbehalfbyyominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column ownerid
+		dataType: string
+		isHidden
+		lineageTag: b69edd89-b13b-4aaf-88a6-d2fb2e9ebd0a
+		summarizeBy: none
+		sourceColumn: ownerid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Owner
+		dataType: string
+		isHidden
+		lineageTag: c54e8e90-09e1-4039-8dbf-596754e35de7
+		summarizeBy: none
+		sourceColumn: owneridname
+
+		annotation SummarizationSetBy = Automatic
+
+	column owneridyominame
+		dataType: string
+		isHidden
+		lineageTag: 46eeadf7-83ae-4cf0-9d29-748cc56037fd
+		summarizeBy: none
+		sourceColumn: owneridyominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column owningbusinessunit
+		dataType: string
+		isHidden
+		lineageTag: a205d1c8-059d-4697-87ea-44e116fe6d60
+		summarizeBy: none
+		sourceColumn: owningbusinessunit
+
+		annotation SummarizationSetBy = Automatic
+
+	column owninguser
+		dataType: string
+		isHidden
+		lineageTag: 73bcd043-339b-47b8-8e03-b184a738bc52
+		summarizeBy: none
+		sourceColumn: owninguser
+
+		annotation SummarizationSetBy = Automatic
+
+	column owningteam
+		dataType: string
+		isHidden
+		lineageTag: c35b9506-da86-4e0a-ab80-f6b660c04ce8
+		summarizeBy: none
+		sourceColumn: owningteam
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Owning Business Unit'
+		dataType: string
+		isHidden
+		lineageTag: baf37e81-728e-4f30-9614-4ec71b95280a
+		summarizeBy: none
+		sourceColumn: owningbusinessunitname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a5f89055-e52b-4221-bea4-8784bc69a5eb
+		summarizeBy: sum
+		sourceColumn: statecode
+
+		annotation SummarizationSetBy = Automatic
+
+	column statecodename
+		dataType: string
+		isHidden
+		lineageTag: 387ae8f2-dcbf-4b0b-b420-be0f84c680aa
+		summarizeBy: none
+		sourceColumn: statecodename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Reason'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e9e6f727-15c8-40bf-a43d-f3c5d5acfce2
+		summarizeBy: sum
+		sourceColumn: statuscode
+
+		annotation SummarizationSetBy = Automatic
+
+	column statuscodename
+		dataType: string
+		isHidden
+		lineageTag: fcd20e0f-5bf6-4b64-85a1-d34e88a6fbca
+		summarizeBy: none
+		sourceColumn: statuscodename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Import Sequence Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e98cf3ed-ac8f-49e1-9dda-0852841bf683
+		summarizeBy: sum
+		sourceColumn: importsequencenumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record Created On'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: efef6ab1-2919-446b-ba5f-6820b6eb558c
+		summarizeBy: none
+		sourceColumn: overriddencreatedon
+
+		variation Variation
+			isDefault
+			relationship: b127f7d0-8f44-42d8-84e6-209d94b8510e
+			defaultHierarchy: LocalDateTable_5a46c127-16fa-4825-b9b4-4ac9b1a0766b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Time Zone Rule Version Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7c09fdaa-bb62-4871-93bf-e4d903d14e71
+		summarizeBy: sum
+		sourceColumn: timezoneruleversionnumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UTC Conversion Time Zone Code'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 09b704c7-2770-4022-8a0e-2a1fb2a3026e
+		summarizeBy: count
+		sourceColumn: utcconversiontimezonecode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 423b221b-313f-4b86-887c-fdffe516006b
+		summarizeBy: none
+		sourceColumn: msdyn_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_accountcustomer
+		dataType: string
+		isHidden
+		lineageTag: aba0b1e6-d0f9-4300-ac8a-c70b0ec810de
+		summarizeBy: none
+		sourceColumn: msdyn_accountcustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Accounting Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f67e1375-f06d-4711-9707-4720cf9d2991
+		summarizeBy: none
+		sourceColumn: msdyn_accountingdate
+
+		variation Variation
+			isDefault
+			relationship: ce587225-2dca-4c74-b39e-f9cd9c825a2d
+			defaultHierarchy: LocalDateTable_8d30180f-55ae-41f0-95b8-ceada2c2ec90.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_accountvendor
+		dataType: string
+		isHidden
+		lineageTag: dea9199c-6882-4a76-88ba-dd81178205ea
+		summarizeBy: none
+		sourceColumn: msdyn_accountvendor
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_adjustmentstatus
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fd5c2ba1-5126-491e-8a2a-881549aceeff
+		summarizeBy: sum
+		sourceColumn: msdyn_adjustmentstatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Adjustment Status'
+		dataType: string
+		isHidden
+		lineageTag: a09901b2-fd7b-4a09-98a2-485eab14a326
+		summarizeBy: none
+		sourceColumn: msdyn_adjustmentstatusname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 68a2d09b-936e-4166-9f13-ab55cd27170c
+		summarizeBy: sum
+		sourceColumn: msdyn_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column transactioncurrencyid
+		dataType: string
+		isHidden
+		lineageTag: 3057f4c9-241a-4fc5-a18e-7fb636bf33ee
+		summarizeBy: none
+		sourceColumn: transactioncurrencyid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		isHidden
+		lineageTag: dfdb8363-a1af-434f-97ec-8a7bbdb8ef0a
+		summarizeBy: none
+		sourceColumn: transactioncurrencyidname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exchange Rate'
+		dataType: double
+		isHidden
+		lineageTag: 4d79f9b2-28f3-4cd3-84cd-bfd225554dd1
+		summarizeBy: sum
+		sourceColumn: exchangerate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Amount (Base currency)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 73624895-27e0-41e3-8561-ab7cd0bdd4ae
+		summarizeBy: sum
+		sourceColumn: msdyn_amount_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column msdyn_amountmethod
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 10c315c3-26b1-47ac-bae8-c10b3458ae5d
+		summarizeBy: sum
+		sourceColumn: msdyn_amountmethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount Method'
+		dataType: string
+		isHidden
+		lineageTag: 963eb7f8-f1ae-43bb-9a68-c0d2cbb1d1ae
+		summarizeBy: none
+		sourceColumn: msdyn_amountmethodname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Basis Amount'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 2c7f6582-cd50-4456-9ada-325ba426a327
+		summarizeBy: sum
+		sourceColumn: msdyn_basisamount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Basis Amount (Base currency)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: b39c2abd-0d25-49dd-adf0-87934dbcc995
+		summarizeBy: sum
+		sourceColumn: msdyn_basisamount_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Basis Price'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 2dfe0235-f713-456e-84c2-dce00f9f50b9
+		summarizeBy: sum
+		sourceColumn: msdyn_basisprice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Basis Price (Base currency)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 47ca50ee-bf50-490a-9277-ee0673827d93
+		summarizeBy: sum
+		sourceColumn: msdyn_basisprice_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Basis Quantity'
+		dataType: double
+		isHidden
+		lineageTag: a86254b3-94f9-4773-8ff5-cca926fe23f8
+		summarizeBy: sum
+		sourceColumn: msdyn_basisquantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column msdyn_billingstatus
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: de645ef8-93a9-4deb-9f3c-daad565d06d0
+		summarizeBy: sum
+		sourceColumn: msdyn_billingstatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing status'
+		dataType: string
+		lineageTag: 6dcdab75-d794-49a1-8617-822a70279918
+		summarizeBy: none
+		sourceColumn: msdyn_billingstatusname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_billingtype
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 972db589-5770-4722-821c-1b782ca49869
+		summarizeBy: sum
+		sourceColumn: msdyn_billingtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Billing type'
+		dataType: string
+		isHidden
+		lineageTag: c2b42f46-bba1-40df-8bbe-a31cf5680267
+		summarizeBy: none
+		sourceColumn: msdyn_billingtypename
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_bookableresource
+		dataType: string
+		isHidden
+		lineageTag: 67b2ddb8-52c2-4b77-9daa-d2a301a695b1
+		summarizeBy: none
+		sourceColumn: msdyn_bookableresource
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_contactcustomer
+		dataType: string
+		isHidden
+		lineageTag: b8559afe-2bba-4a28-b935-aba422d120a6
+		summarizeBy: none
+		sourceColumn: msdyn_contactcustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_contactvendor
+		dataType: string
+		isHidden
+		lineageTag: f32b2b9d-7188-4ab1-a186-88b0cbc9e157
+		summarizeBy: none
+		sourceColumn: msdyn_contactvendor
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_customertype
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c7069e0b-f6fd-4bc4-89f8-fb8fe5dcf6ff
+		summarizeBy: sum
+		sourceColumn: msdyn_customertype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer type'
+		dataType: string
+		isHidden
+		lineageTag: e899b1e6-d7fc-4688-ab49-f2313448747a
+		summarizeBy: none
+		sourceColumn: msdyn_customertypename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Document Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cba3ac7d-ce53-44af-96a7-c3894c6cda09
+		summarizeBy: none
+		sourceColumn: msdyn_documentdate
+
+		variation Variation
+			isDefault
+			relationship: 112284cc-dbdb-40c2-8c98-f36a683343e3
+			defaultHierarchy: LocalDateTable_10a9eadc-2a18-4eff-bf6a-82a74ef6e3a3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End Date/Time'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 3be4f2f7-7067-4118-8ae2-b2471a2be776
+		summarizeBy: none
+		sourceColumn: msdyn_enddatetime
+
+		variation Variation
+			isDefault
+			relationship: 88c23e7b-fe7a-4e10-aef6-4522b7bf7ed1
+			defaultHierarchy: LocalDateTable_b088ead8-00ee-4a8c-8846-7ca801fae815.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exchange Rate Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: ff0016f0-3e85-4119-a0d2-11aeb350e681
+		summarizeBy: none
+		sourceColumn: msdyn_exchangeratedate
+
+		variation Variation
+			isDefault
+			relationship: 077ed9d2-ed2f-42dd-89d6-fd72fc215a31
+			defaultHierarchy: LocalDateTable_127d52d3-774b-49a2-91e0-37122e396030.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Description'
+		dataType: string
+		isHidden
+		lineageTag: f1014570-0f9b-4fc7-af1c-12ae1a4ef589
+		summarizeBy: none
+		sourceColumn: msdyn_externaldescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Reference Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 7756e220-2d84-4e5b-8836-a6bdc942e18d
+		summarizeBy: none
+		sourceColumn: msdyn_externalreferencedate
+
+		variation Variation
+			isDefault
+			relationship: 69d197de-830f-4b03-a46f-8ff99f452c75
+			defaultHierarchy: LocalDateTable_8274ee99-3b12-4090-9514-26db90a27711.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Reference ID'
+		dataType: string
+		isHidden
+		lineageTag: 751ca15d-4bcb-41b3-bf73-f502556c048c
+		summarizeBy: none
+		sourceColumn: msdyn_externalreferenceid
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_invoice
+		dataType: string
+		isHidden
+		lineageTag: 8ec0b8dc-46c7-4c2e-8458-fd5a3f62cb87
+		summarizeBy: none
+		sourceColumn: msdyn_invoice
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_isjournalized
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3aaafac7-a98e-46cc-a11e-69eff77cf328
+		summarizeBy: none
+		sourceColumn: msdyn_isjournalized
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Journalized'
+		dataType: string
+		isHidden
+		lineageTag: 87869e34-96e6-43f9-ba93-4ec33da6b570
+		summarizeBy: none
+		sourceColumn: msdyn_isjournalizedname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Percent
+		dataType: double
+		isHidden
+		lineageTag: 0839d59d-e773-4311-9656-80fc5c34054f
+		summarizeBy: sum
+		sourceColumn: msdyn_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: b4633f50-be89-4da0-881f-b6212dc7f841
+		summarizeBy: sum
+		sourceColumn: msdyn_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Price (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: fb5cee8b-cf73-4fc8-a9e1-342646583bd4
+		summarizeBy: sum
+		sourceColumn: msdyn_price_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column msdyn_pricelist
+		dataType: string
+		isHidden
+		lineageTag: 89be693f-0ba8-4370-ac32-a3862a7946af
+		summarizeBy: none
+		sourceColumn: msdyn_pricelist
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_product
+		dataType: string
+		isHidden
+		lineageTag: 856bc626-e632-4a98-8825-c531ddf68001
+		summarizeBy: none
+		sourceColumn: msdyn_product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: 092e7306-c08c-49ad-917d-b21766dd09de
+		summarizeBy: sum
+		sourceColumn: msdyn_quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column msdyn_salescontract
+		dataType: string
+		isHidden
+		lineageTag: e910cca9-0b36-4fab-9bd4-ec9cc0dcecc9
+		summarizeBy: none
+		sourceColumn: msdyn_salescontract
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Contract Line'
+		dataType: string
+		lineageTag: ae14ecfc-ca3c-4a9d-b501-527aa412ff87
+		summarizeBy: none
+		sourceColumn: msdyn_salescontractline
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date/Time'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 417b3c42-e703-4233-b5cd-e2db3c2ff233
+		summarizeBy: none
+		sourceColumn: msdyn_startdatetime
+
+		variation Variation
+			isDefault
+			relationship: f166bb1b-e4b3-4a30-87c0-7eee324e2822
+			defaultHierarchy: LocalDateTable_159c1d91-3278-49b6-bf1f-6e66241fefbf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_transactionclassification
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e40a5d33-8810-47ae-990f-c91d6e60de5e
+		summarizeBy: sum
+		sourceColumn: msdyn_transactionclassification
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Class'
+		dataType: string
+		lineageTag: 387ea2f7-a21c-488c-a28a-c38038ec7f41
+		summarizeBy: none
+		sourceColumn: msdyn_transactionclassificationname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_transactiontypecode
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c9ffa174-655f-4a18-80ed-6fc27727d076
+		summarizeBy: sum
+		sourceColumn: msdyn_transactiontypecode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Type'
+		dataType: string
+		lineageTag: 0cf40642-f034-43ed-98fe-21973878a258
+		summarizeBy: none
+		sourceColumn: msdyn_transactiontypecodename
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_unit
+		dataType: string
+		isHidden
+		lineageTag: 0d671aec-210d-44fd-8545-35ad3418c954
+		summarizeBy: none
+		sourceColumn: msdyn_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_unitschedule
+		dataType: string
+		isHidden
+		lineageTag: 32c6ed9c-e400-4831-9ab0-b4ab42f6d2d8
+		summarizeBy: none
+		sourceColumn: msdyn_unitschedule
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_vendortype
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3c3135df-c2a0-4061-9bda-3954a0302b94
+		summarizeBy: sum
+		sourceColumn: msdyn_vendortype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor Type'
+		dataType: string
+		isHidden
+		lineageTag: 651dbe54-4448-4746-98c1-aaa69ca0db20
+		summarizeBy: none
+		sourceColumn: msdyn_vendortypename
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		isHidden
+		lineageTag: d60ce2fc-255c-4915-a75f-c755b0d0d6a0
+		summarizeBy: none
+		sourceColumn: msdyn_accountcustomername
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_accountcustomeryominame
+		dataType: string
+		isHidden
+		lineageTag: 50c3dd6c-2788-4a90-bb93-0afc099eb9c2
+		summarizeBy: none
+		sourceColumn: msdyn_accountcustomeryominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor
+		dataType: string
+		isHidden
+		lineageTag: d95735d0-5922-4968-8380-c2d5f3ffb9f8
+		summarizeBy: none
+		sourceColumn: msdyn_accountvendorname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_accountvendoryominame
+		dataType: string
+		isHidden
+		lineageTag: 8e133947-e095-42b9-a418-2ee1a447765d
+		summarizeBy: none
+		sourceColumn: msdyn_accountvendoryominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bookable Resource'
+		dataType: string
+		lineageTag: 59b1e7e8-61fc-4dc1-920f-378b97619bd6
+		summarizeBy: none
+		sourceColumn: msdyn_bookableresourcename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer contact'
+		dataType: string
+		isHidden
+		lineageTag: f99eeef5-cfe6-4a84-a42a-2d1f8374cab6
+		summarizeBy: none
+		sourceColumn: msdyn_contactcustomername
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_contactcustomeryominame
+		dataType: string
+		isHidden
+		lineageTag: 60863245-fc02-44a4-90ec-584553805612
+		summarizeBy: none
+		sourceColumn: msdyn_contactcustomeryominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vendor 2'
+		dataType: string
+		isHidden
+		lineageTag: ede5acb4-dfff-4604-aef3-3133bf433d9c
+		summarizeBy: none
+		sourceColumn: msdyn_contactvendorname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_contactvendoryominame
+		dataType: string
+		isHidden
+		lineageTag: bc78da4c-46f4-401d-813f-41da21aacb35
+		summarizeBy: none
+		sourceColumn: msdyn_contactvendoryominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice
+		dataType: string
+		isHidden
+		lineageTag: 58ece06a-59c3-4354-9830-2ea457f826be
+		summarizeBy: none
+		sourceColumn: msdyn_invoicename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price list'
+		dataType: string
+		isHidden
+		lineageTag: 915f561f-f1b5-4702-ad74-e905acb226d7
+		summarizeBy: none
+		sourceColumn: msdyn_pricelistname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		isHidden
+		lineageTag: 47a514a1-92f0-48a0-868b-44a4615ad15e
+		summarizeBy: none
+		sourceColumn: msdyn_productname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Contract'
+		dataType: string
+		isHidden
+		lineageTag: 5ee97eb0-4bbf-4789-9487-37ad3db292f5
+		summarizeBy: none
+		sourceColumn: msdyn_salescontractname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit of measure'
+		dataType: string
+		isHidden
+		lineageTag: a474a7df-58d3-4131-bbf4-df855c09666d
+		summarizeBy: none
+		sourceColumn: msdyn_unitname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Schedule'
+		dataType: string
+		isHidden
+		lineageTag: f03c0760-b053-4b7b-ac08-71ea403c3579
+		summarizeBy: none
+		sourceColumn: msdyn_unitschedulename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Accounting date [TZ independent]'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 9e852237-7071-4bf0-b519-9de7ba9c721a
+		summarizeBy: none
+		sourceColumn: msdyn_tzaaccountingdate
+
+		variation Variation
+			isDefault
+			relationship: 87f939a2-a786-46c8-b53a-8da10b510ea5
+			defaultHierarchy: LocalDateTable_028a9558-0cd7-4206-9137-29ab7c32f47b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_sourcedocument
+		dataType: string
+		isHidden
+		lineageTag: 9341d75c-7fa7-44b9-8e37-822974cbef67
+		summarizeBy: none
+		sourceColumn: msdyn_sourcedocument
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Adjustment Value'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 970e8458-b8dd-4abf-ba51-a0137cd75b5c
+		summarizeBy: sum
+		sourceColumn: msdyn_adjustmentvalue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Adjustment Value (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 0d626202-e0ef-4b06-90c6-7cf58087038f
+		summarizeBy: sum
+		sourceColumn: msdyn_adjustmentvalue_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Budget Evaluation Result'
+		dataType: string
+		isHidden
+		lineageTag: b1b11351-fa95-410f-a435-7afe8f44d04b
+		summarizeBy: none
+		sourceColumn: msdyn_budgetevaluationresult
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Budget Evaluation Result'
+		dataType: string
+		isHidden
+		lineageTag: e7265b1d-047f-46eb-9310-b2ad31cd9003
+		summarizeBy: none
+		sourceColumn: msdyn_budgetevaluationresultsales
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_budgetevaluationstatus
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 48922d03-b3b7-453d-b67e-e7b6beaa8774
+		summarizeBy: sum
+		sourceColumn: msdyn_budgetevaluationstatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Budget Evaluation Status'
+		dataType: string
+		isHidden
+		lineageTag: f260ecb2-5d27-49a1-974a-95fac681b5fe
+		summarizeBy: none
+		sourceColumn: msdyn_budgetevaluationstatusname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_budgetevaluationstatussales
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0e555dbe-2376-4c0b-932c-44a03c32f08c
+		summarizeBy: sum
+		sourceColumn: msdyn_budgetevaluationstatussales
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Budget Evaluation Status'
+		dataType: string
+		isHidden
+		lineageTag: 1115937c-a057-443e-815b-a5ec8eae7874
+		summarizeBy: none
+		sourceColumn: msdyn_budgetevaluationstatussalesname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_contractorganizationalunitid
+		dataType: string
+		isHidden
+		lineageTag: ae48cc49-1aba-4d46-8835-6307df351c98
+		summarizeBy: none
+		sourceColumn: msdyn_contractorganizationalunitid
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_costtype
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a0435e1f-2b94-4b9c-bb4a-9043428574a5
+		summarizeBy: sum
+		sourceColumn: msdyn_costtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Type'
+		dataType: string
+		isHidden
+		lineageTag: 2664daf1-5707-4055-9514-a55234c11ab0
+		summarizeBy: none
+		sourceColumn: msdyn_costtypename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Origin Reference'
+		dataType: string
+		isHidden
+		lineageTag: 723d65de-d9ab-41aa-a90b-87ded97c8aea
+		summarizeBy: none
+		sourceColumn: msdyn_externaloriginreference
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_invoicelinedetail
+		dataType: string
+		isHidden
+		lineageTag: 07c5021c-7908-48ae-ac16-0dcebf56f60a
+		summarizeBy: none
+		sourceColumn: msdyn_invoicelinedetail
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_istransition
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b9e319c6-ddd7-4e04-891a-76708768eec3
+		summarizeBy: none
+		sourceColumn: msdyn_istransition
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transition from WIP to P&L (internal use only)'
+		dataType: string
+		isHidden
+		lineageTag: ec54ea03-e95c-49bb-b8c6-c54571a1204d
+		summarizeBy: none
+		sourceColumn: msdyn_istransitionname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_matchedvendorinvoiceline
+		dataType: string
+		isHidden
+		lineageTag: f1692548-dd43-4c10-98f0-892d03627360
+		summarizeBy: none
+		sourceColumn: msdyn_matchedvendorinvoiceline
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_nottoexceedstatus
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 49d8c43c-1187-4cab-9b6d-968f24e2bb6e
+		summarizeBy: sum
+		sourceColumn: msdyn_nottoexceedstatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Not-to-exceed Status'
+		dataType: string
+		isHidden
+		lineageTag: a8eaf3b7-6d0b-4f89-8477-8d3bc76d5b32
+		summarizeBy: none
+		sourceColumn: msdyn_nottoexceedstatusname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Not-to-exceed Validation Detail'
+		dataType: string
+		isHidden
+		lineageTag: 03b90df1-72f8-47d0-9c35-8820866c57d4
+		summarizeBy: none
+		sourceColumn: msdyn_nottoexceedvalidationdetail
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_project
+		dataType: string
+		lineageTag: 6d51ad89-a914-4784-aac4-6bd120daa4e1
+		summarizeBy: none
+		sourceColumn: msdyn_project
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discount %'
+		dataType: double
+		isHidden
+		lineageTag: b7d87899-0169-44ee-87a4-cc3f87210d6a
+		summarizeBy: sum
+		sourceColumn: msdyn_projectcontractlinediscountpercentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fee %'
+		dataType: double
+		isHidden
+		lineageTag: 1fcd2272-43a3-4116-84d0-35b7bd6c4aa3
+		summarizeBy: sum
+		sourceColumn: msdyn_projectcontractlinefeepercentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column msdyn_projectcontractlinesplitbillingrule
+		dataType: string
+		isHidden
+		lineageTag: d9e72462-27ff-4a5d-b5d4-e5b5799059c3
+		summarizeBy: none
+		sourceColumn: msdyn_projectcontractlinesplitbillingrule
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_projectcontractsplitbillingrule
+		dataType: string
+		isHidden
+		lineageTag: 2fb672cd-8251-40ac-8a6c-8d5b60b9cc83
+		summarizeBy: none
+		sourceColumn: msdyn_projectcontractsplitbillingrule
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_projectcontractretainer
+		dataType: string
+		isHidden
+		lineageTag: 42729392-f998-4e43-8546-1fee5bc2b535
+		summarizeBy: none
+		sourceColumn: msdyn_projectcontractretainer
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_resourcecategory
+		dataType: string
+		lineageTag: 42eed4ea-37d2-4f77-9a04-b0d502a5b343
+		summarizeBy: none
+		sourceColumn: msdyn_resourcecategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_resourceorganizationalunitid
+		dataType: string
+		isHidden
+		lineageTag: bfcfa05f-2913-46df-9dde-a2e0ae19d8cd
+		summarizeBy: none
+		sourceColumn: msdyn_resourceorganizationalunitid
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_Revise
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b165264f-474b-4999-9d9b-86e0b0c0f483
+		summarizeBy: none
+		sourceColumn: msdyn_Revise
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revise
+		dataType: string
+		isHidden
+		lineageTag: 14373cc3-8cee-44df-b8eb-ae9a73d15a74
+		summarizeBy: none
+		sourceColumn: msdyn_revisename
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_salescontractlineid
+		dataType: string
+		lineageTag: 06dfebde-1bc2-44bf-902a-05c94bacd981
+		summarizeBy: none
+		sourceColumn: msdyn_salescontractlineid
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_subcontract
+		dataType: string
+		isHidden
+		lineageTag: c7391e18-ac68-4fe0-bdad-14cc1085aead
+		summarizeBy: none
+		sourceColumn: msdyn_subcontract
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_subcontractline
+		dataType: string
+		isHidden
+		lineageTag: c2088b1c-b936-483e-a80c-6f5ae6a33a05
+		summarizeBy: none
+		sourceColumn: msdyn_subcontractline
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_task
+		dataType: string
+		isHidden
+		lineageTag: 837a90eb-84cb-4f6b-8a35-27a4e900ece7
+		summarizeBy: none
+		sourceColumn: msdyn_task
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tax
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 50ca1261-6ff6-425d-9e42-a619f4356e3c
+		summarizeBy: sum
+		sourceColumn: msdyn_tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Tax (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: acbb952b-b720-4bad-81be-2f07f25dfdb0
+		summarizeBy: sum
+		sourceColumn: msdyn_tax_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column msdyn_transactioncategory
+		dataType: string
+		isHidden
+		lineageTag: 509d4ec6-8f03-4656-a45e-a807641d290a
+		summarizeBy: none
+		sourceColumn: msdyn_transactioncategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Date (Time Zone Independent)'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: ab9f4d9f-6095-4bc8-aa2f-257dcb57f60c
+		summarizeBy: none
+		sourceColumn: msdyn_transactiondate
+
+		variation Variation
+			isDefault
+			relationship: 39b11032-3371-4e94-b9c5-d240dc1ab4e9
+			defaultHierarchy: LocalDateTable_26d5f558-7a3e-4b1e-bb99-59674578ed32.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Write In Product'
+		dataType: string
+		isHidden
+		lineageTag: e5c6929d-704b-47b6-b3ec-3400c300da42
+		summarizeBy: none
+		sourceColumn: msdyn_writeinproductdescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Extended Amount'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 34fc90fa-31de-4728-a276-e5d49d2c84db
+		summarizeBy: sum
+		sourceColumn: msdyn_extendedamount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Extended Amount (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: c1697862-1be9-4d79-9317-1c3e7f2e3db2
+		summarizeBy: sum
+		sourceColumn: msdyn_extendedamount_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Discount Amount'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: feeca3fb-535a-4b4f-855c-acda334afb81
+		summarizeBy: sum
+		sourceColumn: msdyn_projectcontractlinediscountamount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Discount Amount (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: ad64225d-11a0-47af-87b5-50c9231dcc6c
+		summarizeBy: sum
+		sourceColumn: msdyn_projectcontractlinediscountamount_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Fee Amount'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 29ea29de-56ba-4412-92fb-96c4e5f5838c
+		summarizeBy: sum
+		sourceColumn: msdyn_projectcontractlinefeeamount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Fee Amount (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 9d0cfbe9-9881-40d7-b342-dc8f30d74973
+		summarizeBy: sum
+		sourceColumn: msdyn_projectcontractlinefeeamount_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Source Document'
+		dataType: string
+		isHidden
+		lineageTag: 891f3e3f-b8ce-4875-88f0-b0b07c04827c
+		summarizeBy: none
+		sourceColumn: msdyn_sourcedocumentname
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_sourcedocumentyominame
+		dataType: string
+		isHidden
+		lineageTag: 8b6c4076-0e50-472d-86d0-76072fe9d24c
+		summarizeBy: none
+		sourceColumn: msdyn_sourcedocumentyominame
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Resource role'
+		dataType: string
+		isHidden
+		lineageTag: 9a1c1c46-4a3d-4f54-b7cb-49081dfea14c
+		summarizeBy: none
+		sourceColumn: msdyn_resourcecategoryname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Line Detail'
+		dataType: string
+		isHidden
+		lineageTag: 81cc6baf-1255-4d1f-bbce-31db2ee1e58c
+		summarizeBy: none
+		sourceColumn: msdyn_invoicelinedetailname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contracting Unit'
+		dataType: string
+		isHidden
+		lineageTag: 05746e7c-1003-4a0a-9da6-9b50bca16e4d
+		summarizeBy: none
+		sourceColumn: msdyn_contractorganizationalunitidname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project
+		dataType: string
+		isHidden
+		lineageTag: a817e255-f406-493d-9f0b-f9a6f11d6b20
+		summarizeBy: none
+		sourceColumn: msdyn_projectname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Contract Retainer'
+		dataType: string
+		isHidden
+		lineageTag: a7549f5c-017b-4696-9968-47a71b73de75
+		summarizeBy: none
+		sourceColumn: msdyn_projectcontractretainername
+
+		annotation SummarizationSetBy = Automatic
+
+	column Task
+		dataType: string
+		isHidden
+		lineageTag: aa0c8dd8-ed2e-4b33-b85b-625ebec0a68f
+		summarizeBy: none
+		sourceColumn: msdyn_taskname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcontract
+		dataType: string
+		isHidden
+		lineageTag: 93f3d12f-f9b7-4e6d-a8d6-9bf5daff8aa7
+		summarizeBy: none
+		sourceColumn: msdyn_subcontractname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Subcontract Line'
+		dataType: string
+		isHidden
+		lineageTag: d5f3fa3e-140e-4fd4-90a0-a8a6b587f3fb
+		summarizeBy: none
+		sourceColumn: msdyn_subcontractlinename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction category'
+		dataType: string
+		lineageTag: b300e55e-1513-4836-9b8f-7e118ceeaa65
+		summarizeBy: none
+		sourceColumn: msdyn_transactioncategoryname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Resourcing Unit'
+		dataType: string
+		isHidden
+		lineageTag: 1a736dca-b35c-4d74-a91e-fafb7b61dca5
+		summarizeBy: none
+		sourceColumn: msdyn_resourceorganizationalunitidname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Contract Line Customer'
+		dataType: string
+		isHidden
+		lineageTag: ce80155c-a6b3-4a44-a642-2fe342f05718
+		summarizeBy: none
+		sourceColumn: msdyn_projectcontractlinesplitbillingrulename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Contract Customer'
+		dataType: string
+		isHidden
+		lineageTag: 0a756cb5-89e2-4752-a573-77f91a850799
+		summarizeBy: none
+		sourceColumn: msdyn_projectcontractsplitbillingrulename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Matched Vendor Invoice Line'
+		dataType: string
+		isHidden
+		lineageTag: fc82d474-8d7d-41f0-b153-f9cd6eefe957
+		summarizeBy: none
+		sourceColumn: msdyn_matchedvendorinvoicelinename
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Contract Line 2'
+		dataType: string
+		lineageTag: 3381b33f-83b3-4d0b-ab80-97515518eac0
+		summarizeBy: none
+		sourceColumn: msdyn_salescontractlineidname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual Import Id'
+		dataType: string
+		isHidden
+		lineageTag: 397f48ab-2e63-4640-aa6b-7f80fa47e474
+		summarizeBy: none
+		sourceColumn: msdyn_actualimportid
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_batchnumber
+		dataType: string
+		lineageTag: d8da1c73-98cb-4dfe-af0c-367aa3f9bc70
+		summarizeBy: none
+		sourceColumn: msdyn_batchnumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FnO Vendor Invoice Number'
+		dataType: string
+		lineageTag: f8f559b8-741c-464d-a791-8c390b9329c4
+		summarizeBy: none
+		sourceColumn: msdyn_fnovendorinvoicenumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_inventorylocation
+		dataType: string
+		isHidden
+		lineageTag: 68430f1c-d5de-436b-b801-87d3b4140547
+		summarizeBy: none
+		sourceColumn: msdyn_inventorylocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_isintercompany
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8bc7e31d-1481-47b6-b3a5-7d4e5bae4ea5
+		summarizeBy: none
+		sourceColumn: msdyn_isintercompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Intercompany'
+		dataType: string
+		isHidden
+		lineageTag: 106467db-6e44-4fcc-be24-8f780b32de53
+		summarizeBy: none
+		sourceColumn: msdyn_isintercompanyname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Adjustment Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: a114422f-00df-47c4-9a72-68016f652c89
+		summarizeBy: none
+		sourceColumn: msdyn_lastadjustmentdate
+
+		variation Variation
+			isDefault
+			relationship: f194c74f-4079-4fb6-a244-a893b7a2e289
+			defaultHierarchy: LocalDateTable_1a86fd77-c8e4-4c77-88ae-67b0f66bfa87.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_operationalsite
+		dataType: string
+		isHidden
+		lineageTag: cac37938-9130-412c-8cdf-5de6efdc03e6
+		summarizeBy: none
+		sourceColumn: msdyn_operationalsite
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_owningcompany
+		dataType: string
+		isHidden
+		lineageTag: c6a70e2d-1d1f-471c-aac0-a0d21f10046d
+		summarizeBy: none
+		sourceColumn: msdyn_owningcompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_resourcingcompany
+		dataType: string
+		isHidden
+		lineageTag: 494bd994-4246-489f-98e7-0686e96e1d9f
+		summarizeBy: none
+		sourceColumn: msdyn_resourcingcompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_serialnumber
+		dataType: string
+		isHidden
+		lineageTag: 86552662-9122-4ea1-a8a2-ccf90648d1af
+		summarizeBy: none
+		sourceColumn: msdyn_serialnumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_skipsync
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a9c82c69-96f8-4ad0-8e07-1b5616d9cebb
+		summarizeBy: none
+		sourceColumn: msdyn_skipsync
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Skip Sync (internal use only)'
+		dataType: string
+		isHidden
+		lineageTag: 670b04e9-f32e-44d7-8847-c342ab778b60
+		summarizeBy: none
+		sourceColumn: msdyn_skipsyncname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Voucher Number'
+		dataType: string
+		lineageTag: 6bfa7c50-caad-41cc-b410-6933b57980a9
+		summarizeBy: none
+		sourceColumn: msdyn_vouchernumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_warehouse
+		dataType: string
+		isHidden
+		lineageTag: e7647156-08ea-4e86-b5d2-7c7ce3cd4355
+		summarizeBy: none
+		sourceColumn: msdyn_warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Exchange Rate'
+		dataType: double
+		isHidden
+		lineageTag: f52552dd-0c92-4c9e-80fe-d60f18af10ed
+		summarizeBy: sum
+		sourceColumn: msdyn_accountexchangerate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Accounting Amount'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 6dcb0d68-2e24-43d1-9e56-bbd10e38e15d
+		summarizeBy: sum
+		sourceColumn: msdyn_accountingamount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Accounting Amount (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: c43c16a0-d078-4e2c-9676-7783afad89fa
+		summarizeBy: sum
+		sourceColumn: msdyn_accountingamount_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Accounting Tax Amount'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: 1bac6023-4044-4c61-8a10-55c39e2af129
+		summarizeBy: sum
+		sourceColumn: msdyn_accountingtaxamount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'Accounting Tax Amount (Base)'
+		dataType: decimal
+		isHidden
+		formatString: #,0.###############\ "XDR";-#,0.###############\ "XDR";#,0.###############\ "XDR"
+		lineageTag: e36978b6-d933-42fe-bdad-0605b4e489a9
+		summarizeBy: sum
+		sourceColumn: msdyn_accountingtaxamount_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-150"}
+
+	column 'External Origin Reference Type'
+		dataType: string
+		isHidden
+		lineageTag: d215b725-237b-4ab7-b2d8-4ec344f0bbd7
+		summarizeBy: none
+		sourceColumn: msdyn_externaloriginreferencetype
+
+		annotation SummarizationSetBy = Automatic
+
+	column RetryCount
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8a005a88-1573-473f-93c7-bf747bade564
+		summarizeBy: sum
+		sourceColumn: msdyn_retrycount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Name of Bookable Resource'
+		dataType: string
+		isHidden
+		lineageTag: ab7ce646-85e9-4236-9d1e-db48f56a751f
+		summarizeBy: none
+		sourceColumn: msdyn_nameofbookableresource
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Contract Line Number'
+		dataType: string
+		isHidden
+		lineageTag: 16d0e4d6-9636-4edd-a092-5c99341c4458
+		summarizeBy: none
+		sourceColumn: msdyn_valueofsalescontractline
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Owning Company'
+		dataType: string
+		isHidden
+		lineageTag: 47b886ab-2431-49ff-a51d-f78eecd7f5b8
+		summarizeBy: none
+		sourceColumn: msdyn_owningcompanyname
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Resourcing Company'
+		dataType: string
+		isHidden
+		lineageTag: aa310424-9458-41c5-98af-46ae8d597459
+		summarizeBy: none
+		sourceColumn: msdyn_resourcingcompanyname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Batch
+		dataType: string
+		isHidden
+		lineageTag: 1b9361a1-b6ef-474c-858e-121bbddb57c3
+		summarizeBy: none
+		sourceColumn: msdyn_batchnumbername
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory Location'
+		dataType: string
+		isHidden
+		lineageTag: 5302d607-bb90-42dd-bdfb-8801e1574efa
+		summarizeBy: none
+		sourceColumn: msdyn_inventorylocationname
+
+		annotation SummarizationSetBy = Automatic
+
+	column Serial
+		dataType: string
+		isHidden
+		lineageTag: 1c183e3a-539a-4ea1-a23b-9726e8cf5ed4
+		summarizeBy: none
+		sourceColumn: msdyn_serialnumbername
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site
+		dataType: string
+		isHidden
+		lineageTag: c33ead98-bff6-485e-9515-ed0f9c143d37
+		summarizeBy: none
+		sourceColumn: msdyn_operationalsitename
+
+		annotation SummarizationSetBy = Automatic
+
+	column Warehouse
+		dataType: string
+		isHidden
+		lineageTag: cc99d9e4-f4ae-4b46-87b6-9a7e2610b86d
+		summarizeBy: none
+		sourceColumn: msdyn_warehousename
+
+		annotation SummarizationSetBy = Automatic
+
+	column craef_vkitasktype
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b63aec82-0ed2-4055-b7c4-3c0f137ba9bb
+		summarizeBy: sum
+		sourceColumn: craef_vkitasktype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VKI Task Type'
+		dataType: string
+		isHidden
+		lineageTag: 8a7baf83-2193-4aa9-ba29-4962ab712e87
+		summarizeBy: none
+		sourceColumn: craef_vkitasktypename
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_externalreferencetype
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cd3b3a76-9fad-44b8-b675-1466c831e89b
+		summarizeBy: sum
+		sourceColumn: msdyn_externalreferencetype
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Reference Type'
+		dataType: string
+		isHidden
+		lineageTag: 8de580d3-4523-4f98-9019-367c6089dcfd
+		summarizeBy: none
+		sourceColumn: msdyn_externalreferencetypename
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_sourcejournalline
+		dataType: string
+		isHidden
+		lineageTag: 4b1278cf-11a6-479a-9602-549d0e0f99db
+		summarizeBy: none
+		sourceColumn: msdyn_sourcejournalline
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Source Journal Line'
+		dataType: string
+		isHidden
+		lineageTag: 16db0c54-1a7d-4269-8f1c-1447dac23382
+		summarizeBy: none
+		sourceColumn: msdyn_sourcejournallinename
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProjectStatNr =
+			VAR _p   = msdyn_actual[Project]
+			VAR _sep = FIND(" - ", _p, 1, 0)
+			RETURN IF(_sep > 0, LEFT(_p, _sep - 1), BLANK())
+		dataType: string
+		isHidden
+		lineageTag: e3b11011-eb7b-40ea-bc9e-844a9a3592b8
+
+	column 'Expense Type D365' =
+			VAR _cat = msdyn_actual[Transaction category]
+			VAR _travel_names = {
+			    "Meals", "Hotel", "Mileage", "Metro/tram/bus/taxi", "Parking",
+			    "Air ticket", "Train ticket", "Taxi", "Ferry", "Car rental", "Fuel",
+			    "Flight", "Train", "Renting car short term", "Conference registrations"
+			}
+			VAR _travel_gl = {
+			    "61460000", "61511000", "61511010", "61511020", "61511030", "61620000"
+			}
+			VAR _manpower_gl = {
+			    "45300000", "45400000", "45400010", "45410000", "45900000", "49900030",
+			    "61700000", "62301000", "62301700", "62302000", "62302010", "62302020"
+			}
+			VAR _subcont_gl   = { "61800000", "61900000" }
+			VAR _amort_gl     = { "63021000", "63021020", "63021050" }
+			VAR _amort_ict_gl = { "63021010" }
+			VAR _other_gl     = { "74000090" }
+			VAR _exclu_gl     = { "48000000" }
+			RETURN
+			SWITCH(TRUE(),
+			    msdyn_actual[Transaction Type] <> "Cost",          BLANK(),
+			    msdyn_actual[VKI Task Type] = "Billing Milestone", BLANK(),
+			    _cat IN _exclu_gl,                                 BLANK(),
+			    _cat IN _travel_names,                             "T6 Travel",
+			    _cat IN _travel_gl,                                "T6 Travel",
+			    _cat IN _manpower_gl,                              "T1/T3 Manpower",
+			    _cat IN _subcont_gl,                               "T5 Subcontractors",
+			    _cat IN _amort_ict_gl,                             "T4 Amortization ICT",
+			    _cat IN _amort_gl,                                 "T4 Amortization",
+			    _cat IN _other_gl,                                 "Other",
+			    LEFT(_cat, 1) = "6",                               "T5 Material Purch.",
+			    "DC Unassigned"
+			)
+		dataType: string
+		lineageTag: 531b8f63-43a4-4cdd-8421-d70c3288e5f9
+
+	column 'VKI FY' = IF(MONTH([Accounting Date]) >= 10, YEAR([Accounting Date]) + 1, YEAR([Accounting Date]))
+		dataType: int64
+		lineageTag: b7bf43d8-1e38-4b7d-8909-ef77fb84043d
+
+	column 'Payment Date Finance' = ```
+			
+			LOOKUPVALUE(
+			    GL_HEADER[AccountingDate],
+			    GL_HEADER[SubledgerVoucher], [Voucher Number]
+			)
+			
+			```
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 9e6c405c-ad51-4a61-93f9-b494df756099
+
+	partition msdyn_actual = m
+		mode: import
+		source =
+				let
+				    Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				    dbo_msdyn_actual = Source{[Schema="dbo",Item="msdyn_actual"]}[Data]
+				in
+				    dbo_msdyn_actual
+

@@ -1,0 +1,93 @@
+table Dates
+	lineageTag: 43badc00-0055-44f9-9555-9d12b852b85c
+
+	column Date
+		formatString: General Date
+		lineageTag: 6a9e11b5-7fbc-4e81-9221-7d7dc1c6ecb9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: f40e33b2-3507-460c-a0ed-2e429a4372d4
+			defaultHierarchy: LocalDateTable_6921c4bb-a6d9-4ed3-8f34-2eee12acaa88.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 252732f2-71f6-457f-8e18-e251850c8438
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		formatString: 0
+		lineageTag: 8a9dfcd3-3185-4180-a051-afcbaa9d0e59
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		lineageTag: 56c71c34-426a-4a2d-abb6-cc56dad8ba60
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 83c780e9-9063-4afe-8549-dee4ddca6423
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: edf94e3d-95c4-498b-affa-ae646d64761c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		lineageTag: 43b26f57-e74b-40f7-a3e6-e71819d84ebd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearQuarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VKI FY'
+		lineageTag: fd13426c-4a4d-4006-bd2a-cce8e47e1507
+		isNameInferred
+		sourceColumn: [VKI FY]
+
+	partition Dates = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+				      CALENDAR(DATE(2017,1,1), DATE(2031,12,31)),
+				      "Year", YEAR([Date]),
+				      "Month", MONTH([Date]),
+				      "MonthName", FORMAT([Date],"MMMM"),
+				      "Quarter", "Q" & FORMAT([Date],"Q"),
+				      "YearMonth", FORMAT([Date],"YYYY-MM"),
+				      "YearQuarter", FORMAT([Date],"YYYY") & "/Q" & FORMAT([Date],"Q"),
+				      "VKI FY",
+				          IF(
+				              MONTH([Date]) >= 10,
+				              "FY " & YEAR([Date]) & "/" & FORMAT(YEAR([Date])+1,"00"),
+				              "FY " & (YEAR([Date])-1) & "/" & FORMAT(YEAR([Date]),"00")
+				          )
+				  )
+
+	annotation PBI_Id = 6b84cd1fc00f4a4ca82249807d5ab120
+

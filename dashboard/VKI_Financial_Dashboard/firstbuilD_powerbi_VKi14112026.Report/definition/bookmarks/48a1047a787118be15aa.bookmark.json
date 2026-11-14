@@ -1,0 +1,874 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "clear_all",
+  "name": "48a1047a787118be15aa",
+  "options": {
+    "targetVisualNames": [],
+    "suppressActiveSection": true,
+    "suppressDisplay": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "c170c5b2d404d8724081",
+    "sections": {
+      "c170c5b2d404d8724081": {
+        "visualContainers": {
+          "fc1d92c5359ba2ee9081": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "be5c5dfc83404d28128b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Projects"
+                            }
+                          },
+                          "Property": "VKI Stat Number"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "322313768be0d259344a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Projects"
+                            }
+                          },
+                          "Property": "Name"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5bbba6baab430ad43aa2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Projects"
+                            }
+                          },
+                          "Property": "Project manager"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "ee940950746b305ad3cd": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "0714bf595de13464de4c": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "2ac1317052640766272c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ab924ee4303069d85a00",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "p",
+                        "Entity": "Projects",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "p"
+                                        }
+                                      },
+                                      "Property": "VKI Stat Number"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "VKI Stat Number"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "33fae01b6a3cb6d420ee",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "Department"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f37d4552a4c88b357704",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c298b31050e933d7120c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "Start date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ede0531401264d75499e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "Finish Date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "79d2ca24067e26133ca9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "VKI Project Type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "50e7752132010c046a83",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures"
+                        }
+                      },
+                      "Property": "Total Budget"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "32844107c08696ece6dc",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "Order ID"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8e9ef330aa2d410ec657",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "VKI Role"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "VKI Stat Number"
+                    }
+                  }
+                }
+              ]
+            },
+            "highlight": {
+              "selection": [
+                {
+                  "dataMap": {
+                    "Projects.VKI Stat Number": [
+                      {
+                        "scopeId": {
+                          "And": {
+                            "Left": {
+                              "And": {
+                                "Left": {
+                                  "And": {
+                                    "Left": {
+                                      "And": {
+                                        "Left": {
+                                          "And": {
+                                            "Left": {
+                                              "And": {
+                                                "Left": {
+                                                  "And": {
+                                                    "Left": {
+                                                      "And": {
+                                                        "Left": {
+                                                          "Comparison": {
+                                                            "ComparisonKind": 0,
+                                                            "Left": {
+                                                              "Column": {
+                                                                "Expression": {
+                                                                  "SourceRef": {
+                                                                    "Entity": "Projects"
+                                                                  }
+                                                                },
+                                                                "Property": "VKI Stat Number"
+                                                              }
+                                                            },
+                                                            "Right": {
+                                                              "Literal": {
+                                                                "Value": "'AGA 2111'"
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "Right": {
+                                                          "Comparison": {
+                                                            "ComparisonKind": 0,
+                                                            "Left": {
+                                                              "Column": {
+                                                                "Expression": {
+                                                                  "SourceRef": {
+                                                                    "Entity": "Projects"
+                                                                  }
+                                                                },
+                                                                "Property": "Department"
+                                                              }
+                                                            },
+                                                            "Right": {
+                                                              "Literal": {
+                                                                "Value": "'Other'"
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "Right": {
+                                                      "Comparison": {
+                                                        "ComparisonKind": 0,
+                                                        "Left": {
+                                                          "Column": {
+                                                            "Expression": {
+                                                              "SourceRef": {
+                                                                "Entity": "Contracts"
+                                                              }
+                                                            },
+                                                            "Property": "Customer"
+                                                          }
+                                                        },
+                                                        "Right": {
+                                                          "Literal": {
+                                                            "Value": "'VKI-Internal'"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "Right": {
+                                                  "Comparison": {
+                                                    "ComparisonKind": 0,
+                                                    "Left": {
+                                                      "Column": {
+                                                        "Expression": {
+                                                          "SourceRef": {
+                                                            "Entity": "Milestones"
+                                                          }
+                                                        },
+                                                        "Property": "MilestoneStatus"
+                                                      }
+                                                    },
+                                                    "Right": {
+                                                      "Literal": {
+                                                        "Value": "'Posted'"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "Right": {
+                                              "Comparison": {
+                                                "ComparisonKind": 0,
+                                                "Left": {
+                                                  "Column": {
+                                                    "Expression": {
+                                                      "SourceRef": {
+                                                        "Entity": "Projects"
+                                                      }
+                                                    },
+                                                    "Property": "Start date"
+                                                  }
+                                                },
+                                                "Right": {
+                                                  "Literal": {
+                                                    "Value": "datetime'2026-01-05T07:00:00'"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "Right": {
+                                          "Comparison": {
+                                            "ComparisonKind": 0,
+                                            "Left": {
+                                              "Column": {
+                                                "Expression": {
+                                                  "SourceRef": {
+                                                    "Entity": "Projects"
+                                                  }
+                                                },
+                                                "Property": "Finish Date"
+                                              }
+                                            },
+                                            "Right": {
+                                              "Literal": {
+                                                "Value": "datetime'2026-01-05T07:00:00'"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "Right": {
+                                      "Comparison": {
+                                        "ComparisonKind": 0,
+                                        "Left": {
+                                          "Column": {
+                                            "Expression": {
+                                              "SourceRef": {
+                                                "Entity": "Contracts"
+                                              }
+                                            },
+                                            "Property": "VKI Project Type"
+                                          }
+                                        },
+                                        "Right": {
+                                          "Literal": {
+                                            "Value": "'HourlyCostVKI'"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "Right": {
+                                  "Comparison": {
+                                    "ComparisonKind": 0,
+                                    "Left": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Entity": "Contracts"
+                                          }
+                                        },
+                                        "Property": "Order ID"
+                                      }
+                                    },
+                                    "Right": {
+                                      "Literal": {
+                                        "Value": "'VKIORD-01374-D5D7R2'"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Contracts"
+                                      }
+                                    },
+                                    "Property": "VKI Role"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'VKI Only'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "metadata": [
+                    "_Measures.Total Budget"
+                  ]
+                }
+              ],
+              "filterExpressionMetadata": {
+                "expressions": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "VKI Stat Number"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "Department"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "Customer"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "VKI Project Type"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Milestones"
+                        }
+                      },
+                      "Property": "MilestoneStatus"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "Start date"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Projects"
+                        }
+                      },
+                      "Property": "Finish Date"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "Order ID"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contracts"
+                        }
+                      },
+                      "Property": "VKI Role"
+                    }
+                  }
+                ],
+                "cachedValueItems": [
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "And": {
+                            "Left": {
+                              "And": {
+                                "Left": {
+                                  "And": {
+                                    "Left": {
+                                      "And": {
+                                        "Left": {
+                                          "And": {
+                                            "Left": {
+                                              "And": {
+                                                "Left": {
+                                                  "And": {
+                                                    "Left": {
+                                                      "And": {
+                                                        "Left": {
+                                                          "Comparison": {
+                                                            "ComparisonKind": 0,
+                                                            "Left": {
+                                                              "Column": {
+                                                                "Expression": {
+                                                                  "SourceRef": {
+                                                                    "Entity": "Projects"
+                                                                  }
+                                                                },
+                                                                "Property": "VKI Stat Number"
+                                                              }
+                                                            },
+                                                            "Right": {
+                                                              "Literal": {
+                                                                "Value": "'AGA 2111'"
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "Right": {
+                                                          "Comparison": {
+                                                            "ComparisonKind": 0,
+                                                            "Left": {
+                                                              "Column": {
+                                                                "Expression": {
+                                                                  "SourceRef": {
+                                                                    "Entity": "Projects"
+                                                                  }
+                                                                },
+                                                                "Property": "Department"
+                                                              }
+                                                            },
+                                                            "Right": {
+                                                              "Literal": {
+                                                                "Value": "'Other'"
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "Right": {
+                                                      "Comparison": {
+                                                        "ComparisonKind": 0,
+                                                        "Left": {
+                                                          "Column": {
+                                                            "Expression": {
+                                                              "SourceRef": {
+                                                                "Entity": "Contracts"
+                                                              }
+                                                            },
+                                                            "Property": "Customer"
+                                                          }
+                                                        },
+                                                        "Right": {
+                                                          "Literal": {
+                                                            "Value": "'VKI-Internal'"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "Right": {
+                                                  "Comparison": {
+                                                    "ComparisonKind": 0,
+                                                    "Left": {
+                                                      "Column": {
+                                                        "Expression": {
+                                                          "SourceRef": {
+                                                            "Entity": "Milestones"
+                                                          }
+                                                        },
+                                                        "Property": "MilestoneStatus"
+                                                      }
+                                                    },
+                                                    "Right": {
+                                                      "Literal": {
+                                                        "Value": "'Posted'"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "Right": {
+                                              "Comparison": {
+                                                "ComparisonKind": 0,
+                                                "Left": {
+                                                  "Column": {
+                                                    "Expression": {
+                                                      "SourceRef": {
+                                                        "Entity": "Projects"
+                                                      }
+                                                    },
+                                                    "Property": "Start date"
+                                                  }
+                                                },
+                                                "Right": {
+                                                  "Literal": {
+                                                    "Value": "datetime'2026-01-05T07:00:00'"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "Right": {
+                                          "Comparison": {
+                                            "ComparisonKind": 0,
+                                            "Left": {
+                                              "Column": {
+                                                "Expression": {
+                                                  "SourceRef": {
+                                                    "Entity": "Projects"
+                                                  }
+                                                },
+                                                "Property": "Finish Date"
+                                              }
+                                            },
+                                            "Right": {
+                                              "Literal": {
+                                                "Value": "datetime'2026-01-05T07:00:00'"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "Right": {
+                                      "Comparison": {
+                                        "ComparisonKind": 0,
+                                        "Left": {
+                                          "Column": {
+                                            "Expression": {
+                                              "SourceRef": {
+                                                "Entity": "Contracts"
+                                              }
+                                            },
+                                            "Property": "VKI Project Type"
+                                          }
+                                        },
+                                        "Right": {
+                                          "Literal": {
+                                            "Value": "'HourlyCostVKI'"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "Right": {
+                                  "Comparison": {
+                                    "ComparisonKind": 0,
+                                    "Left": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Entity": "Contracts"
+                                          }
+                                        },
+                                        "Property": "Order ID"
+                                      }
+                                    },
+                                    "Right": {
+                                      "Literal": {
+                                        "Value": "'VKIORD-01374-D5D7R2'"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Contracts"
+                                      }
+                                    },
+                                    "Property": "VKI Role"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'VKI Only'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "AGA 2111",
+                      "1": "Other",
+                      "2": "VKI-Internal",
+                      "3": "HourlyCostVKI",
+                      "4": "Posted",
+                      "5": "05/01/2026",
+                      "6": "05/01/2026",
+                      "7": "VKIORD-01374-D5D7R2",
+                      "8": "VKI Only"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

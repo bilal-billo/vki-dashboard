@@ -1,0 +1,28 @@
+DEFINE
+      MEASURE Milestones[Total Direct Costs OH] =
+          -1 * SUMX(
+              OdooData,
+              IF(OdooData[AnalyticalJournal] <> "WANI" && OdooData[AnalyticalJournal] <> "Invoice",
+                  OdooData[Amount] * SWITCH(TRUE(),
+                      OdooData[AnalyticalJournal] = "T1 Manpower", 1.55,
+                      LEFT(OdooData[AnalyticalJournal], 2) = "T3", 1.55,
+                      1), 0))
+
+      MEASURE Milestones[Total Claimable] =
+          -1 * SUMX(
+              OdooData,
+              IF(OdooData[AnalyticalJournal] <> "WANI" && OdooData[AnalyticalJournal] <> "Invoice",
+                  VAR ProjType = LOOKUPVALUE(Projects[ContractType], Projects[VKI Stat Number], OdooData[StatNumber])
+                  VAR Journal = OdooData[AnalyticalJournal]
+                  VAR IsT1T3 = Journal = "T1 Manpower" || LEFT(Journal, 2) = "T3"
+                  VAR IsT5 = Journal = "T5 Suppliers"
+                  VAR IsT4 = LEFT(Journal, 2) = "T4"
+                  VAR Coef = SWITCH(ProjType,
+                      "EU", IF(IsT5, 1, 1.25), "FOD", 1.15,
+                      "PRODEX", IF(IsT5 || IsT4, 1, 1.05),
+                      "RW", IF(IsT1T3, BLANK(), 1.17),
+                      "VLAIO16", IF(IsT1T3, BLANK(), 1),
+                      "VLAIO21", IF(IsT1T3, BLANK(), 1), 1)
+                  RETURN OdooData[Amount] * Coef, 0))
+
+  EVALUATE { 1 }

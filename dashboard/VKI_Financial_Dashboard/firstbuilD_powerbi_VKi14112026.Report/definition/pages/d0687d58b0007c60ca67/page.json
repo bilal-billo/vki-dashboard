@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "d0687d58b0007c60ca67",
+  "displayName": "Revenues",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

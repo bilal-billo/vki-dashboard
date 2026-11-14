@@ -1,0 +1,64 @@
+table Query1
+	isHidden
+	lineageTag: 838f4422-05af-4400-9eb4-db5b6a366bf9
+
+	column msdyn_price
+		dataType: double
+		lineageTag: a12d3354-f897-4760-a7bd-40ad31140ca2
+		summarizeBy: sum
+		sourceColumn: msdyn_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _msdyn_bookableresource_value
+		dataType: string
+		lineageTag: 425fdf09-9cf9-45b2-b72f-8861ec3e259a
+		summarizeBy: none
+		sourceColumn: _msdyn_bookableresource_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column _msdyn_pricelist_value
+		dataType: string
+		lineageTag: 3214d215-840a-4e55-90c9-b66d3cc48362
+		summarizeBy: none
+		sourceColumn: _msdyn_pricelist_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'msdyn_bookableresource.name'
+		dataType: string
+		lineageTag: 331c5b75-df0e-477b-8305-2e649758289e
+		summarizeBy: none
+		sourceColumn: msdyn_bookableresource.name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'msdyn_PriceList.name'
+		dataType: string
+		lineageTag: d068f143-97cd-4681-948e-ca008493bfb3
+		summarizeBy: none
+		sourceColumn: msdyn_PriceList.name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Query1 = m
+		mode: import
+		source =
+				let
+				    Source = OData.Feed(
+				        "https://operations-vki-prod.crm4.dynamics.com/api/data/v9.2/msdyn_resourcecategorypricelevels?$select=msdyn_price,_msdyn_bookableresource_value,_msdyn_pricelist_value&$expand=msdyn_PriceList($select=name),msdyn_bookableresource($select=name)",
+				        null,
+				        [Implementation="2.0"]
+				    ),
+				    #"Expanded msdyn_bookableresource" = Table.ExpandRecordColumn(Source, "msdyn_bookableresource", {"name"}, {"msdyn_bookableresource.name"}),
+				    #"Expanded msdyn_PriceList" = Table.ExpandRecordColumn(#"Expanded msdyn_bookableresource", "msdyn_PriceList", {"name"}, {"msdyn_PriceList.name"})
+				in
+				    #"Expanded msdyn_PriceList"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

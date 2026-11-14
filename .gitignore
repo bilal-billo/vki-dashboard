@@ -2,9 +2,10 @@
 .env
 *.env
 
-# Power BI binaries (trop lourds pour git — on versionne le .pbip seulement)
+# Power BI binaires (trop lourds pour git — on versionne le .pbip/.tmdl seulement)
 archive/pbix/*.pbix
 dashboard/**/*.pbix
+dashboard/**/.pbi/cache.abf
 
 # Cache Python
 __pycache__/

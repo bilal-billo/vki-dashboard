@@ -1,0 +1,159 @@
+table Projects
+	lineageTag: 1ed418cd-f3a8-47f7-ae56-46df2715bd03
+
+	column Project
+		dataType: string
+		lineageTag: 15334c7e-ad7b-4cf9-b7c2-4df68bc0cb76
+		summarizeBy: none
+		sourceColumn: ProjectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project ID'
+		dataType: string
+		lineageTag: 4a25219b-ad54-4d0a-a5f1-a15fe7b0d6dc
+		summarizeBy: none
+		sourceColumn: ProjectNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 3a1281ef-03d2-46cb-b68c-5d08490b9ec0
+		summarizeBy: none
+		sourceColumn: ProjectName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VKI Stat Number'
+		dataType: string
+		lineageTag: 4026598d-e060-48ee-a680-3067508e61cd
+		summarizeBy: none
+		sourceColumn: StatNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start date'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 44435d5c-6beb-47b6-8845-63bebdc9cf5f
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		variation Variation
+			isDefault
+			relationship: 66b24731-9bbc-49c0-b84f-4810545aa251
+			defaultHierarchy: LocalDateTable_2f0d0033-af9e-4d94-b050-e973d9d74fad.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Finish Date'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 8857af33-9023-422e-9ce0-4d367de58227
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		variation Variation
+			isDefault
+			relationship: aa21e69e-cc81-4a66-89a2-6a2665a9913b
+			defaultHierarchy: LocalDateTable_ec0f1471-b450-42b0-800f-fed7ac831eb6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column craef_vkidepartment
+		dataType: int64
+		formatString: 0
+		lineageTag: 91fa2d66-dc82-46c0-b050-2a1ae9cc4988
+		summarizeBy: sum
+		sourceColumn: DepartmentCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: ed0780cc-c7cc-4471-875d-edcf4bc3753f
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_projectmanager
+		dataType: string
+		lineageTag: 3f10ee6d-ad1e-4c08-9390-08d286f4a983
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project manager'
+		dataType: string
+		lineageTag: d646ca23-4056-4baa-a831-c39ba97a4b3e
+		summarizeBy: none
+		sourceColumn: ProjectManager
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_contractorganizationalunitid
+		dataType: string
+		lineageTag: 897739f0-2782-4e21-9617-76d8a16e3f7e
+		summarizeBy: none
+		sourceColumn: ContractingUnitID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractType
+		dataType: string
+		lineageTag: 60fda8e2-9154-40be-ad2d-e56a35760fd0
+		summarizeBy: none
+		sourceColumn: ContractType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Projects = m
+		mode: import
+		source =
+				let
+				      Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				      Nav = Source{[Schema="dbo",Item="msdyn_project"]}[Data],
+				      Cols = Table.SelectColumns(Nav,{
+				          "msdyn_projectid", "msdyn_projectnumber", "msdyn_subject",
+				          "craef_vkistatnumber", "msdyn_scheduledstart", "msdyn_finish",
+				          "craef_vkidepartment", "msdyn_projectmanager", "msdyn_projectmanagername",
+				          "msdyn_contractorganizationalunitid"
+				      }),
+				      Renamed = Table.RenameColumns(Cols, {
+				          {"msdyn_projectid", "ProjectID"}, {"msdyn_projectnumber", "ProjectNumber"},
+				          {"msdyn_subject", "ProjectName"}, {"craef_vkistatnumber", "StatNumber"},
+				          {"msdyn_scheduledstart", "StartDate"}, {"msdyn_finish", "EndDate"},
+				          {"craef_vkidepartment", "DepartmentCode"}, {"msdyn_projectmanager", "EmployeeID"},
+				          {"msdyn_projectmanagername", "ProjectManager"},
+				          {"msdyn_contractorganizationalunitid", "ContractingUnitID"}
+				      }),
+				      Filtered = Table.SelectRows(Renamed, each
+				          [StatNumber] <> null and
+				          (Text.At([StatNumber], 2) = "R" or Text.At([StatNumber], 2) = "O")
+				      ),
+				      Dept = Table.AddColumn(Filtered, "Department", each
+				          if [DepartmentCode] = 252580002 then "AR"
+				          else if [DepartmentCode] = 252580001 then "EA"
+				          else if [DepartmentCode] = 252580003 then "TP"
+				          else "Other"),
+				      Types = Table.TransformColumnTypes(Dept, {
+				          {"StartDate", type datetime}, {"EndDate", type datetime}
+				      }),
+				      OrgUnitsRaw = Source{[Schema="dbo",Item="msdyn_organizationalunit"]}[Data],
+				      OrgUnitsCols = Table.SelectColumns(OrgUnitsRaw, {"msdyn_organizationalunitid", "msdyn_name"}),
+				      Merged = Table.NestedJoin(Types, {"ContractingUnitID"}, OrgUnitsCols, {"msdyn_organizationalunitid"}, "OrgData", JoinKind.LeftOuter),
+				      Expanded = Table.ExpandTableColumn(Merged, "OrgData", {"msdyn_name"}, {"ContractType"})
+				  in
+				      Expanded
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

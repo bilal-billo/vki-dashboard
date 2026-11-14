@@ -1,0 +1,162 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "63c99ea83e6dae30364e",
+  "position": {
+    "x": 425,
+    "y": 491.25,
+    "z": 3000,
+    "height": 212,
+    "width": 396,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Projects"
+                    }
+                  },
+                  "Property": "VKI Stat Number"
+                }
+              },
+              "queryRef": "Projects.VKI Stat Number",
+              "nativeQueryRef": "VKI Stat Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Milestones"
+                    }
+                  },
+                  "Property": "Milestone Name"
+                }
+              },
+              "queryRef": "Milestones.Milestone Name",
+              "nativeQueryRef": "Milestone Name"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Milestones"
+                        }
+                      },
+                      "Property": "Line Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Milestones.Line Amount)",
+              "nativeQueryRef": "Sum of Line Amount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Milestones"
+                    }
+                  },
+                  "Property": "Milestone date"
+                }
+              },
+              "queryRef": "Milestones.Milestone date",
+              "nativeQueryRef": "Milestone date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Milestones"
+                    }
+                  },
+                  "Property": "MilestoneStatus"
+                }
+              },
+              "queryRef": "Milestones.MilestoneStatus",
+              "nativeQueryRef": "MilestoneStatus"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Milestones"
+                    }
+                  },
+                  "Property": "Milestone Category"
+                }
+              },
+              "queryRef": "Milestones.Milestone Category",
+              "nativeQueryRef": "Milestone Category"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Invoicing Schedule'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,46 @@
+table ProjectTypes
+	lineageTag: 179b6dc2-b9e1-4ffc-b2a1-a7c3d8cf71fc
+
+	column 'VKI Project Types'
+		dataType: string
+		lineageTag: 280d9364-c69f-4083-a1c8-6cacadcd4bb3
+		summarizeBy: none
+		sourceColumn: ProjectTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 6f5888da-ce34-498f-928a-4e2e66135af9
+		summarizeBy: none
+		sourceColumn: TypeCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 70c46e8b-3e8e-4854-a44f-bb99893de04a
+		summarizeBy: none
+		sourceColumn: TypeLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProjectTypes = m
+		mode: import
+		source =
+				let
+				      Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				      Nav = Source{[Schema="dbo",Item="cr365_vkiprojecttypes"]}[Data],
+				      Cols = Table.SelectColumns(Nav, {"cr365_vkiprojecttypesid","cr365_type","cr365_description"}),
+				      Renamed = Table.RenameColumns(Cols, {
+				          {"cr365_vkiprojecttypesid","ProjectTypeID"},
+				          {"cr365_type","TypeCode"},
+				          {"cr365_description","TypeLabel"}
+				      })
+				  in
+				      Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

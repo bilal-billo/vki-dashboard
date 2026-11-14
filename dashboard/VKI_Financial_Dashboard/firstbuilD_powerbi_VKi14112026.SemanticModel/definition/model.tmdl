@@ -1,0 +1,56 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-150
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Projects","Contracts","ProjectTypes","Milestones","Customers","Invoices","Employees","OdooData","msdyn_organizationalunit","BOB_OUT","GL_HEADER","msdyn_actual","GL_MainAccounts","Query1"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table Projects
+ref table DateTableTemplate_a9502279-8850-4f70-8294-8118215190c1
+ref table LocalDateTable_2f0d0033-af9e-4d94-b050-e973d9d74fad
+ref table LocalDateTable_ec0f1471-b450-42b0-800f-fed7ac831eb6
+ref table Contracts
+ref table ProjectTypes
+ref table Milestones
+ref table LocalDateTable_605ed5d5-ebad-4bb6-b4c9-26ebc3a63c0f
+ref table Customers
+ref table Invoices
+ref table LocalDateTable_6930ac58-b7f4-4e6f-ae30-a51496425221
+ref table Employees
+ref table Dates
+ref table _Measures
+ref table OdooData
+ref table LocalDateTable_754336e0-0a16-4896-a419-da956f87aa02
+ref table LocalDateTable_6921c4bb-a6d9-4ed3-8f34-2eee12acaa88
+ref table msdyn_organizationalunit
+ref table BOB_OUT
+ref table GL_HEADER
+ref table LocalDateTable_506bbe0a-c670-4a2c-a606-110917d9ea47
+ref table LocalDateTable_2242bcaa-e250-4abc-ab78-31524eb8b011
+ref table LocalDateTable_b34cda15-cc88-4192-af7f-56e27f078f25
+ref table msdyn_actual
+ref table LocalDateTable_a917d08e-ad94-420f-b1a0-c488e7f1f540
+ref table LocalDateTable_334313c2-ed86-48df-9c17-2e3dd20d28a4
+ref table LocalDateTable_5a46c127-16fa-4825-b9b4-4ac9b1a0766b
+ref table LocalDateTable_8d30180f-55ae-41f0-95b8-ceada2c2ec90
+ref table LocalDateTable_10a9eadc-2a18-4eff-bf6a-82a74ef6e3a3
+ref table LocalDateTable_b088ead8-00ee-4a8c-8846-7ca801fae815
+ref table LocalDateTable_127d52d3-774b-49a2-91e0-37122e396030
+ref table LocalDateTable_8274ee99-3b12-4090-9514-26db90a27711
+ref table LocalDateTable_159c1d91-3278-49b6-bf1f-6e66241fefbf
+ref table LocalDateTable_028a9558-0cd7-4206-9137-29ab7c32f47b
+ref table LocalDateTable_26d5f558-7a3e-4b1e-bb99-59674578ed32
+ref table LocalDateTable_1a86fd77-c8e4-4c77-88ae-67b0f66bfa87
+ref table GL_MainAccounts
+ref table LocalDateTable_4f17d3f0-1965-4680-98b3-c36f196ca6d6
+ref table Query1
+
+ref cultureInfo en-US
+

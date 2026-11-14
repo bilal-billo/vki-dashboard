@@ -1,0 +1,228 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 1837.9735788424325
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 810.68373509468472,
+            "y": 2054.4846771681559
+          },
+          "nodeIndex": "Contracts",
+          "nodeLineageTag": "0e8d3d4d-e593-4680-b382-5ab9c6933860",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 902.14530968842143,
+            "y": 1785.3028473508909
+          },
+          "nodeIndex": "Customers",
+          "nodeLineageTag": "399d1604-f1e3-4aba-a367-f2aef54d2d68",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 193.88908466417237,
+            "y": 1960.1950363082294
+          },
+          "nodeIndex": "Employees",
+          "nodeLineageTag": "75d008a6-8e14-4f8e-8570-e01c007813f8",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 754.10129990953669,
+            "y": 1560.4806976101424
+          },
+          "nodeIndex": "Invoices",
+          "nodeLineageTag": "c8331d77-eeb5-4201-9f62-7c72b042225f",
+          "size": {
+            "height": 176.167853,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 562.75455797071618,
+            "y": 2335.7791973089206
+          },
+          "nodeIndex": "Milestones",
+          "nodeLineageTag": "02020d89-1735-46d4-ba3b-fc7e22b08aa6",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 274.85840391756352,
+            "y": 2694.7880543184692
+          },
+          "nodeIndex": "Projects",
+          "nodeLineageTag": "1ed418cd-f3a8-47f7-ae56-46df2715bd03",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1289.1222575131662,
+            "y": 2317.9144937989922
+          },
+          "nodeIndex": "ProjectTypes",
+          "nodeLineageTag": "179b6dc2-b9e1-4ffc-b2a1-a7c3d8cf71fc",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2753.3959295531031
+          },
+          "nodeIndex": "Dates",
+          "nodeLineageTag": "43badc00-0055-44f9-9555-9d12b852b85c",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1198.5462366884215,
+            "y": 1862.1225221883353
+          },
+          "nodeIndex": "_Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2351.0784512863547
+          },
+          "nodeIndex": "OdooData",
+          "nodeLineageTag": "e442e87d-4c83-4e3f-991c-99eea67464d8",
+          "size": {
+            "height": 367.50391711662633,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 266.36396482815121,
+            "y": 2169.5328822911661
+          },
+          "nodeIndex": "msdyn_organizationalunit",
+          "nodeLineageTag": "28acd5e7-20a7-42a7-bafd-a589ee79b5b4",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1573.1222575131662,
+            "y": 1952.5183787692902
+          },
+          "nodeIndex": "BOB_OUT",
+          "nodeLineageTag": "fe95fccc-156b-48ac-86c6-f79d89ed05c2",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1857.1222575131662,
+            "y": 1796.9603801717824
+          },
+          "nodeIndex": "GL_HEADER",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2141.122257513166,
+            "y": 1638.6233822755205
+          },
+          "nodeIndex": "msdyn_actual",
+          "nodeLineageTag": "447388c0-16d1-46e8-8586-7e6fc01b75f9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2425.122257513166,
+            "y": 1475.1178854311281
+          },
+          "nodeIndex": "GL_MainAccounts",
+          "nodeLineageTag": "cf3b3f08-41e7-4a03-9880-dd2bcddd307a",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2709.122257513166,
+            "y": 1137.5410462540465
+          },
+          "nodeIndex": "Query1",
+          "nodeLineageTag": "838f4422-05af-4400-9eb4-db5b6a366bf9",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 63.287087723234073,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

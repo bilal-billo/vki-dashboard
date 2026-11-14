@@ -1,0 +1,302 @@
+table Milestones
+	lineageTag: 02020d89-1735-46d4-ba3b-fc7e22b08aa6
+
+	measure 'Total WANI' = ```
+			
+			          CALCULATE(SUM(OdooData[Amount]), OdooData[AnalyticalJournal] = "WANI")
+			```
+		isHidden
+		lineageTag: 37ee03b8-3c6f-4ad1-94fb-b21d1727952f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Over Time' = ```
+			
+			          [Total Budget] - [Revenues Booked Cumulative]
+			```
+		isHidden
+		lineageTag: 0d47a37c-d034-4a28-a3e8-ab38fbadb92a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenues Booked Cumulative' = ```
+			
+			          VAR MaxDate = MAX(Dates[Date])
+			          RETURN
+			          IF(
+			              ISBLANK(MaxDate),
+			              BLANK(),
+			              CALCULATE(
+			                  SUM(Milestones[Line Amount]),
+			                  ALL(Milestones[Milestone date]),
+			                  Milestones[Milestone date] <= MaxDate,
+			                  Milestones[msdyn_invoicestatus] = 192350003
+			              )
+			          )
+			```
+		isHidden
+		lineageTag: deab9b9e-af91-462a-a857-ac31a599d0f5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Direct Costs OH' = ```
+			
+			          -1 * SUMX(
+			              OdooData,
+			              IF(OdooData[AnalyticalJournal] <> "WANI" && OdooData[AnalyticalJournal] <> "Invoice",
+			                  OdooData[Amount] * SWITCH(TRUE(),
+			                      OdooData[AnalyticalJournal] = "T1 Manpower", 1.55,
+			                      LEFT(OdooData[AnalyticalJournal], 2) = "T3", 1.55,
+			                      1), 0))
+			```
+		isHidden
+		lineageTag: c04e1e0a-20fc-4141-afe8-cfd015447f77
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Claimable' = ```
+			
+			          -1 * SUMX(
+			              OdooData,
+			              IF(OdooData[AnalyticalJournal] <> "WANI" && OdooData[AnalyticalJournal] <> "Invoice",
+			                  VAR ProjType = LOOKUPVALUE(Projects[ContractType], Projects[VKI Stat Number], OdooData[StatNumber])
+			                  VAR Journal = OdooData[AnalyticalJournal]
+			                  VAR IsT1T3 = Journal = "T1 Manpower" || LEFT(Journal, 2) = "T3"
+			                  VAR IsT5 = Journal = "T5 Suppliers"
+			                  VAR IsT4 = LEFT(Journal, 2) = "T4"
+			                  VAR Coef = SWITCH(ProjType,
+			                      "EU", IF(IsT5, 1, 1.25), "FOD", 1.15,
+			                      "PRODEX", IF(IsT5 || IsT4, 1, 1.05),
+			                      "RW", IF(IsT1T3, BLANK(), 1.17),
+			                      "VLAIO16", IF(IsT1T3, BLANK(), 1),
+			                      "VLAIO21", IF(IsT1T3, BLANK(), 1), 1)
+			                  RETURN OdooData[Amount] * Coef, 0))
+			```
+		isHidden
+		lineageTag: 1bfae099-076b-4161-988f-315c5f46820b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Budget vs Revenues Booked' =
+			VAR MaxDate = MAX(Dates[Date])
+			RETURN
+			[Total Budget] - CALCULATE(
+			    SUM(Milestones[Line Amount]),
+			    REMOVEFILTERS(Dates),
+			    Milestones[Milestone date] <= MaxDate,
+			    Milestones[msdyn_invoicestatus] = 192350003
+			)
+		isHidden
+		lineageTag: ad6ac83e-1f48-471d-89bb-8f4fe01c4786
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Budget vs Claimable Costs' =
+			VAR MaxDate = MAX(Dates[Date])
+			RETURN
+			[Total Budget] - CALCULATE(
+			    SUMX(
+			        FILTER(OdooData, OdooData[Date] <= MaxDate),
+			        VAR ProjType = LOOKUPVALUE(Projects[ContractType], Projects[VKI Stat Number], OdooData[StatNumber])
+			        VAR Journal   = OdooData[AnalyticalJournal]
+			        VAR Coef = SWITCH(TRUE(),
+			            LEFT(ProjType,2) = "EU", SWITCH(TRUE(),
+			                Journal = "T1 Manpower",         1.25,
+			                Journal = "T4 Subcontracting",   1.25,
+			                Journal = "T5 Other Costs",       1.25,
+			                Journal = "T6 Travel",            1.25,
+			                1.0),
+			            ProjType = "FOD", SWITCH(TRUE(),
+			                Journal = "T1 Manpower",         1.15,
+			                Journal = "T4 Subcontracting",   1.15,
+			                Journal = "T5 Other Costs",       1.15,
+			                Journal = "T6 Travel",            1.15,
+			                1.0),
+			            1.0)
+			        RETURN IF(Journal <> "WANI" && Journal <> "Invoice",
+			            -1 * OdooData[Amount] * Coef, 0)
+			    ),
+			    REMOVEFILTERS(Dates)
+			)
+		isHidden
+		lineageTag: c1186866-4102-49d3-8ce5-f999bdfcd1aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Sum of milestone amounts with status=Posted
+	measure 'Approved Milestones' = CALCULATE(SUM(Milestones[Line Amount]), Milestones[MilestoneStatus] = "Posted")
+		formatString: "€"#,0.00
+		lineageTag: 5fb77c11-5f1b-4296-aa3e-0a01407911eb
+
+	/// Sum of all milestone amounts
+	measure 'Planned Milestones' = SUM(Milestones[Line Amount])
+		formatString: "€"#,0.00
+		lineageTag: ec1cdb1e-7128-4f6d-8c7a-8294dba33d60
+
+	/// Billed Sales from msdyn_actual = amount submitted to client
+	measure 'Requested Amount' = CALCULATE(SUM(msdyn_actual[Amount]), msdyn_actual[Transaction Type] = "Billed Sales")
+		formatString: "€"#,0.00
+		lineageTag: e764d27b-559a-438b-8387-2da532db60c8
+
+	/// Count of Not Ready milestones
+	measure 'Not Ready Count' = CALCULATE(COUNTROWS(Milestones), Milestones[MilestoneStatus] = "Not Ready")
+		formatString: 0
+		lineageTag: da048769-9a74-434e-aa72-a2e27ece7357
+
+	/// Count of Posted (Approved) milestones
+	measure 'Posted Count' = CALCULATE(COUNTROWS(Milestones), Milestones[MilestoneStatus] = "Posted")
+		formatString: 0
+		lineageTag: 2feddadc-5479-4c8a-8c20-55e5abb42953
+
+	/// Approved amount / Total planned amount
+	measure 'Milestone Completion %' = DIVIDE(CALCULATE(SUM(Milestones[Line Amount]), Milestones[MilestoneStatus] = "Posted"), SUM(Milestones[Line Amount]), 0)
+		formatString: 0.0%
+		lineageTag: 821b0d45-c16e-45b1-90ff-0f5634c1dbf1
+
+	column 'Project Contract Line Milestone'
+		dataType: string
+		lineageTag: 89826274-ef26-4be1-8f1c-7b0081dfcbda
+		summarizeBy: none
+		sourceColumn: MilestoneID
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_contract
+		dataType: string
+		lineageTag: ecd33ea2-090b-4b88-9ed7-35a7bab0707e
+		summarizeBy: none
+		sourceColumn: ContractID
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_project
+		dataType: string
+		lineageTag: 944793c8-f218-447c-8252-1e70912bfab9
+		summarizeBy: none
+		sourceColumn: ProjectID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Line Amount'
+		dataType: double
+		lineageTag: 6a65b84a-9d37-4f0f-b4ab-e6d8872d30ef
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Contract Line Milestone ID'
+		dataType: string
+		lineageTag: c2bfa446-5b26-40dd-8c1d-6a17f8a9a84e
+		summarizeBy: none
+		sourceColumn: MilestoneNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 069b5500-069a-42eb-99ff-74f4d5909d57
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+		variation Variation
+			isDefault
+			relationship: 18eb74e9-ee65-4e51-a163-d87d6870950b
+			defaultHierarchy: LocalDateTable_605ed5d5-ebad-4bb6-b4c9-26ebc3a63c0f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Milestone date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6654432e-0fe7-40d2-b32a-d86842a80f93
+		summarizeBy: none
+		sourceColumn: MilestoneDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column msdyn_invoicestatus
+		dataType: int64
+		formatString: 0
+		lineageTag: b25b09dd-e4a6-41a5-8659-d14117eaf141
+		summarizeBy: sum
+		sourceColumn: StatusCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column MilestoneStatus
+		dataType: string
+		lineageTag: f99893d5-1812-48a7-a771-b8ad17ac3121
+		summarizeBy: none
+		sourceColumn: MilestoneStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VKI FY' = IF(MONTH([Milestone date]) >= 10, YEAR([Milestone date]) + 1, YEAR([Milestone date]))
+		dataType: int64
+		lineageTag: 0b7fb3d7-a68c-4029-aa5c-38d0f80ed7a3
+
+	column 'Milestone Name'
+		dataType: string
+		lineageTag: 681cb909-714d-4a7f-b9e7-ee6363e7da07
+		sourceColumn: Milestone Name
+
+	column 'Contract Line Description'
+		dataType: string
+		lineageTag: 50d939bd-2a2f-43a8-8d33-8378ef0f34b6
+		sourceColumn: Contract Line Description
+
+	column 'Stat Nr' = RELATED(Projects[VKI Stat Number])
+		dataType: string
+		lineageTag: e9d996db-6642-4d76-aa17-d76e970bb90f
+
+	column 'Milestone Category' = SWITCH(TRUE(),CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "ADVANCE") || CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "ACOMPTE"), "Advance Payment",CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "REPRISE") || CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "RECOVERY"), "AP Recovery",CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "FINAL"), "Final Payment",CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "PERIODIC") || CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "REPORT") || LEFT(UPPER(Milestones[Milestone Name]), 2) = "RP", "Periodic Report",CONTAINSSTRING(UPPER(Milestones[Milestone Name]), "INTERIM") || LEFT(UPPER(Milestones[Milestone Name]), 2) = "IP", "Interim Payment","Other Milestone")
+		dataType: string
+		lineageTag: 3835dbda-543e-4c5e-b304-5cd54cc14a18
+
+	partition Milestones = m
+		mode: import
+		source =
+				let
+				    Source = CommonDataService.Database("operations-vki-prod.crm4.dynamics.com"),
+				    Nav = Source{[Schema="dbo",Item="msdyn_contractlinescheduleofvalue"]}[Data],
+				    Cols = Table.SelectColumns(Nav, {
+				        "msdyn_contractlinescheduleofvalueid",
+				        "msdyn_name",
+				        "msdyn_contract","msdyn_project",
+				        "msdyn_amount","msdyn_contractlinemilestonenumber",
+				        "msdyn_invoicedate","msdyn_milestonedate","msdyn_invoicestatus",
+				        "msdyn_contractlinedescription"
+				    }),
+				    Renamed = Table.RenameColumns(Cols, {
+				        {"msdyn_contractlinescheduleofvalueid","MilestoneID"},
+				        {"msdyn_name","Milestone Name"},
+				        {"msdyn_contract","ContractID"},
+				        {"msdyn_project","ProjectID"},
+				        {"msdyn_amount","Amount"},
+				        {"msdyn_contractlinemilestonenumber","MilestoneNumber"},
+				        {"msdyn_invoicedate","InvoiceDate"},
+				        {"msdyn_milestonedate","MilestoneDate"},
+				        {"msdyn_invoicestatus","StatusCode"},
+				        {"msdyn_contractlinedescription","Contract Line Description"}
+				    }),
+				    Status = Table.AddColumn(Renamed, "MilestoneStatus", each
+				        if [StatusCode] = 192350003 then "Posted"
+				        else if [StatusCode] = 192350001 then "Ready"
+				        else if [StatusCode] = 192350000 then "Not Ready"
+				        else "Unknown"),
+				    Types = Table.TransformColumnTypes(Status, {
+				        {"Amount", type number},
+				        {"MilestoneDate", type datetime},
+				        {"InvoiceDate", type datetime}
+				    })
+				in
+				    Types
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

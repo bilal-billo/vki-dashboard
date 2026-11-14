@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "202a9c390b1c41968c68",
+  "position": {
+    "x": 9.41410813813181,
+    "y": 371.85727145620655,
+    "z": 4000,
+    "height": 256,
+    "width": 1262,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dates"
+                    }
+                  },
+                  "Property": "YearQuarter"
+                }
+              },
+              "queryRef": "Dates.YearQuarter",
+              "nativeQueryRef": "YearQuarter",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Budget"
+                }
+              },
+              "queryRef": "_Measures.Total Budget",
+              "nativeQueryRef": "Total Budget"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Milestones"
+                    }
+                  },
+                  "Property": "Remaining Budget vs Revenues Booked"
+                }
+              },
+              "queryRef": "Milestones.Remaining Budget vs Revenues Booked",
+              "nativeQueryRef": "Remaining Budget vs Revenues Booked"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Milestones"
+                    }
+                  },
+                  "Property": "Remaining Budget vs Claimable Costs"
+                }
+              },
+              "queryRef": "Milestones.Remaining Budget vs Claimable Costs",
+              "nativeQueryRef": "Remaining Budget vs Claimable Costs"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Total Budget"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

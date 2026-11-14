@@ -1,0 +1,173 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "1fd0f66003b10ed8aa7a",
+  "position": {
+    "x": 25.581467970646262,
+    "y": 160.465571815872,
+    "z": 2000,
+    "height": 559.3039133582206,
+    "width": 973.25857688322378,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OdooData"
+                    }
+                  },
+                  "Property": "StatNumber"
+                }
+              },
+              "queryRef": "OdooData.StatNumber",
+              "nativeQueryRef": "StatNumber"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OdooData"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "OdooData.Date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OdooData"
+                    }
+                  },
+                  "Property": "Employee"
+                }
+              },
+              "queryRef": "OdooData.Employee",
+              "nativeQueryRef": "Employee"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "OdooData"
+                        }
+                      },
+                      "Property": "Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(OdooData.Amount)",
+              "nativeQueryRef": "Sum of Amount"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "OdooData"
+                        }
+                      },
+                      "Property": "Amount_OH"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(OdooData.Amount_OH)",
+              "nativeQueryRef": "Sum of Amount_OH"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "OdooData"
+                        }
+                      },
+                      "Property": "Hours"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(OdooData.Hours)",
+              "nativeQueryRef": "Sum of Hours"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OdooData"
+                    }
+                  },
+                  "Property": "AnalyticalJournal"
+                }
+              },
+              "queryRef": "OdooData.AnalyticalJournal",
+              "nativeQueryRef": "AnalyticalJournal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OdooData"
+                    }
+                  },
+                  "Property": "Description"
+                }
+              },
+              "queryRef": "OdooData.Description",
+              "nativeQueryRef": "Description"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BoldHeader'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

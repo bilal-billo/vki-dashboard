@@ -1,0 +1,266 @@
+table GL_HEADER
+	lineageTag: d74db0d1-a793-47cf-a4a7-6c4dd84aa4e2
+
+	column JournalNumber
+		dataType: string
+		isHidden
+		lineageTag: 5d7d3a82-b19c-432e-8d9d-9edcf570ca61
+		summarizeBy: none
+		sourceColumn: JournalNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalCalendarYear
+		dataType: int64
+		formatString: 0
+		lineageTag: bbb573f3-7fbe-4a47-8cb0-a5b22975445f
+		summarizeBy: sum
+		sourceColumn: FiscalCalendarYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ledger
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1fe5f011-6afb-49db-a9fb-530f47b8212f
+		summarizeBy: sum
+		sourceColumn: Ledger
+
+		annotation SummarizationSetBy = Automatic
+
+	column SysCreatedBy
+		dataType: string
+		isHidden
+		lineageTag: 712990fe-aac4-4eb6-b097-eeb548f2091e
+		summarizeBy: none
+		sourceColumn: SysCreatedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column JournalCategory
+		dataType: string
+		lineageTag: 9b684c94-13e4-4575-9f20-b8dcfb002855
+		summarizeBy: none
+		sourceColumn: JournalCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7d0ea7ce-5f82-42aa-abec-7e2ad4012ab3
+		summarizeBy: none
+		sourceColumn: DocumentDate
+
+		variation Variation
+			isDefault
+			relationship: 1229e4d8-e299-4ca2-ab74-bb9c77b678cd
+			defaultHierarchy: LocalDateTable_506bbe0a-c670-4a2c-a606-110917d9ea47.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LedgerPostingJournalDataAreaId
+		dataType: string
+		isHidden
+		lineageTag: d93988af-d322-46fc-b6a2-580998ea941e
+		summarizeBy: none
+		sourceColumn: LedgerPostingJournalDataAreaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubledgerJournalEntry
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 060e1a3f-348d-4010-8fa0-566ae9f5c2c3
+		summarizeBy: sum
+		sourceColumn: SubledgerJournalEntry
+
+		annotation SummarizationSetBy = Automatic
+
+	column SysRecVersion
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 954c8cd4-35cb-432d-b06c-9d9074cd6f49
+		summarizeBy: sum
+		sourceColumn: SysRecVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e938c107-d577-4227-aeb8-e64ce72e710f
+		summarizeBy: none
+		sourceColumn: SourceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentNumber
+		dataType: string
+		isHidden
+		lineageTag: ed690cbe-7a9b-47d1-833a-289f6a4b126f
+		summarizeBy: none
+		sourceColumn: DocumentNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column LedgerPostingJournal
+		dataType: string
+		isHidden
+		lineageTag: 59d5f65c-b951-4638-a03d-6a9e75b9e67d
+		summarizeBy: none
+		sourceColumn: LedgerPostingJournal
+
+		annotation SummarizationSetBy = Automatic
+
+	column SysCreatedTransactionId
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bb8e1309-3bf9-44fa-85a8-a7da8f9b311c
+		summarizeBy: count
+		sourceColumn: SysCreatedTransactionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountingDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 53b08dbb-7670-4590-bb54-1f782a987bd7
+		summarizeBy: none
+		sourceColumn: AccountingDate
+
+		variation Variation
+			isDefault
+			relationship: 0c9e76c6-816d-4689-83bd-5659334558da
+			defaultHierarchy: LocalDateTable_4f17d3f0-1965-4680-98b3-c36f196ca6d6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LedgerEntryJournal
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9fd560ac-b091-48a9-90f4-815ffcbaf364
+		summarizeBy: sum
+		sourceColumn: LedgerEntryJournal
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalCalendarPeriod
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c0407848-3447-410c-9667-3a74c60d247a
+		summarizeBy: sum
+		sourceColumn: FiscalCalendarPeriod
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubledgerVoucher
+		dataType: string
+		lineageTag: 6264e718-044c-4eb6-8a8f-f9a002a34a8c
+		summarizeBy: none
+		sourceColumn: SubledgerVoucher
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcknowledgementDate
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 3f917271-aa78-45e7-849d-5e5bbc4a6594
+		summarizeBy: none
+		sourceColumn: AcknowledgementDate
+
+		variation Variation
+			isDefault
+			relationship: 9f6ec5cb-ba90-4027-a8fc-5ee9900b078c
+			defaultHierarchy: LocalDateTable_2242bcaa-e250-4abc-ab78-31524eb8b011.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column BudgetSourceLedgerEntryPosted
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 69e63790-2e78-4fb6-b217-3a4366cc49cb
+		summarizeBy: sum
+		sourceColumn: BudgetSourceLedgerEntryPosted
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostingLayer
+		dataType: string
+		isHidden
+		lineageTag: 4eb44112-bbfc-4240-bb0a-62b48b0c2761
+		summarizeBy: none
+		sourceColumn: PostingLayer
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransferId
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bc5cab2f-6a19-4531-9c6a-88eb975172b5
+		summarizeBy: count
+		sourceColumn: TransferId
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubledgerVoucherDataAreaId
+		dataType: string
+		isHidden
+		lineageTag: ef839eb3-6b68-47c8-a40d-cfec067e14a9
+		summarizeBy: none
+		sourceColumn: SubledgerVoucherDataAreaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedOn
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: a4fb4a2c-536d-42f2-9c31-d5883e1363e4
+		summarizeBy: none
+		sourceColumn: CreatedOn
+
+		variation Variation
+			isDefault
+			relationship: 084035db-9122-427d-a1e7-848ff8e8c893
+			defaultHierarchy: LocalDateTable_b34cda15-cc88-4192-af7f-56e27f078f25.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountingDate_Date = DATE(YEAR([AccountingDate]), MONTH([AccountingDate]), DAY([AccountingDate]))
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-MM-dd
+		lineageTag: 2d2083d1-0f6d-4cb3-b5ee-3e3db88e45ce
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'VKI FY' = IF(MONTH([AccountingDate]) >= 10, YEAR([AccountingDate]) + 1, YEAR([AccountingDate]))
+		dataType: int64
+		lineageTag: 9211ddbc-775b-4a29-a9ab-c1351dd245b7
+
+	partition GL_HEADER = m
+		mode: import
+		source =
+				let
+				    Source = OData.Feed(
+				        "https://vki-prod.operations.eu.dynamics.com/data/GeneralJournalEntryBiEntities?$select=SourceKey,AccountingDate,AcknowledgementDate,BudgetSourceLedgerEntryPosted,CreatedOn,DocumentDate,DocumentNumber,FiscalCalendarPeriod,FiscalCalendarYear,JournalCategory,JournalNumber,Ledger,LedgerEntryJournal,LedgerPostingJournal,LedgerPostingJournalDataAreaId,PostingLayer,SubledgerJournalEntry,SubledgerVoucher,SubledgerVoucherDataAreaId,SysCreatedBy,SysCreatedTransactionId,SysRecVersion,TransferId",
+				        null, [Implementation="2.0"]
+				    )
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
